@@ -1,0 +1,75 @@
+<div class="main-div">
+    <mat-card style="padding: 40px; max-width: 600px; align-items: center;">
+        <mat-card-content>
+            <h2 class="example-h2">כניסה</h2>
+            <p>נא הקלידו את מספר המשפחה ובחרו איזה תאום ישחק</p>
+            <hr>
+            <table>
+                <tr>
+                    <td>
+                        <b>משפחה</b>
+                        <br>
+                        <span>הקלידו בבקשה את מספר המשפחה</span>
+                    </td>
+                    <td style="width:20px;"></td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input [formControl]="family" matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>תאום</b>
+                        <br>
+                        <span>בחרו איזה תאום ישחק עתה</span>
+                    </td>
+                    <td></td>
+                    <td>
+                        <mat-radio-group [(ngModel)]="creds.twin">
+                            <table style="width:100%">
+                                <td class="data-cell">
+                                    תאום א'
+                                    <br>
+                                    <mat-radio-button color="primary" class="selection" value="a"></mat-radio-button>
+                                </td>
+                                <td class="gap-cell"></td>
+                                <td class="data-cell">
+                                    תאום ב'
+                                    <br>
+                                    <mat-radio-button color="primary" class="selection" value="b"></mat-radio-button>
+                                </td>
+                            </table>
+                        </mat-radio-group>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>בן או בת?</b>
+                    </td>
+                    <td></td>
+                    <td>
+                        <mat-radio-group [(ngModel)]="creds.gender">
+                            <table style="width:100%">
+                                <td class="data-cell">
+                                    <img src="../../../assets/images/boy.png">
+                                    <br>
+                                    <mat-radio-button color="primary" class="selection" value="male"></mat-radio-button>
+                                </td>
+                                <td class="gap-cell"></td>
+                                <td class="data-cell">
+                                    <img src="../../../assets/images/girl.png">
+                                    <br>
+                                    <mat-radio-button color="primary" class="selection" value="female">
+                                    </mat-radio-button>
+                                </td>
+                            </table>
+                        </mat-radio-group>
+                    </td>
+                </tr>
+            </table>
+            <button mat-raised-button color="primary" (click)="start()">היכנסו למשחק</button>
+            <p *ngIf="invalidFamilyFlag" style="color:red; font-weight: bold;">מספר המשפחה אינו מתאים</p>
+        </mat-card-content>
+    </mat-card>
+</div>

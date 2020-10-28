@@ -1,0 +1,24 @@
+.gap-cell {
+  width: 20px;
+}
+
+.data-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+td {
+  padding-bottom: 20px;
+}
+
+mat-radio-button {
+  color: primary;
+}
