@@ -24,7 +24,7 @@ export class ValuesRankingComponent implements OnInit {
 
   stage1(creds: credentials) {
     this.creds = creds;
-    this.stage = 4;
+    this.stage = 2;
   }
 
   stage2(endFlag: boolean) {
@@ -40,7 +40,7 @@ export class ValuesRankingComponent implements OnInit {
 
   stage4(endFlag: boolean) {
     if (endFlag) {
-      this.stage = 4;
+      this.stage = 5;
     }
   }
 
