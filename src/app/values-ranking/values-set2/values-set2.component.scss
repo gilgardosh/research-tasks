@@ -1,0 +1,13 @@
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-container {
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

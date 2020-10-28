@@ -2,4 +2,6 @@
     <app-entering-form *ngIf="stage == 1" (gotCreds)=getcreds($event)></app-entering-form>
     <app-values-set1 *ngIf="stage == 2" [isMale]="this.creds.gender === 'male'" (openingEnded)=openingEnded($event)>
     </app-values-set1>
+    <app-values-set2 *ngIf="stage == 4" [isMale]="this.creds.gender === 'male'" (openingEnded)=openingEnded($event)>
+    </app-values-set2>
 </div>
