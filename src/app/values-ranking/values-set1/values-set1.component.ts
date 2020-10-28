@@ -30,11 +30,11 @@ export class ValuesSet1Component implements OnInit {
   constructor(private audioService: AudioService) {}
 
   ngOnInit(): void {
-    this.subtitle = this.isMale
-      ? 'עכשיו אנחנו נצא למסע דימיוני - מסע בדברים החשובים לך בחיים, במטרות שלך ואיך תרצה לחיות בעתיד'
-      : 'עכשיו אנחנו נצא למסע דימיוני - מסע בדברים החשובים לך בחיים, במטרות שלך ואיך תרצי לחיות בעתיד';
+    this.subtitle = `עכשיו אנחנו נצא למסע דימיוני -<br>
+    מסע בדברים החשובים לך בחיים,<br>
+    במטרות שלך ואיך תרצ${this.isMale ? 'ה' : 'י'} לחיות בעתיד`;
     this.audioService.setAudio(
-      `../../assets/values-ranking/values_aud/01opening-${
+      `../../assets/values-ranking/values_aud/opening1-${
         this.isMale ? 'M' : 'F'
       }.wav`
     );
@@ -50,12 +50,12 @@ export class ValuesSet1Component implements OnInit {
     this.audioService.getPlayerStatus().subscribe((res) => {
       if (res == 'ended') {
         this.stage += 1;
-        this.nextStage();
+        this.introduceValues();
       }
     });
   }
 
-  nextStage() {
+  introduceValues() {
     let valNum: number;
     let audioString: string;
     switch (this.stage) {
