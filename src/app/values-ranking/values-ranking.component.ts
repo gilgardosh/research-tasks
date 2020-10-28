@@ -22,14 +22,29 @@ export class ValuesRankingComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getcreds(creds: credentials) {
+  stage1(creds: credentials) {
     this.creds = creds;
-    this.stage = 2;
+    this.stage = 4;
   }
 
-  openingEnded(endFlag: boolean) {
+  stage2(endFlag: boolean) {
     if (endFlag) {
       this.stage = 3;
     }
+  }
+
+  stage3(ranking1Data: any) {
+    // TODO: get data
+    this.stage = 4;
+  }
+
+  stage4(endFlag: boolean) {
+    if (endFlag) {
+      this.stage = 4;
+    }
+  }
+
+  stage5(ranking2Data: any) {
+    // TODO: send data
   }
 }

@@ -1,7 +1,11 @@
 <div class="containter">
-    <app-entering-form *ngIf="stage == 1" (gotCreds)=getcreds($event)></app-entering-form>
-    <app-values-set1 *ngIf="stage == 2" [isMale]="this.creds.gender === 'male'" (openingEnded)=openingEnded($event)>
+    <app-entering-form *ngIf="stage == 1" (gotCreds)=stage1($event)></app-entering-form>
+    <app-values-set1 *ngIf="stage == 2" [isMale]="this.creds.gender === 'male'" (openingEnded)=stage2($event)>
     </app-values-set1>
-    <app-values-set2 *ngIf="stage == 4" [isMale]="this.creds.gender === 'male'" (openingEnded)=openingEnded($event)>
+    <app-rank-set1 *ngIf="stage == 3" [isMale]="this.creds.gender === 'male'" (getRanking)=stage3($event)>
+    </app-rank-set1>
+    <app-values-set2 *ngIf="stage == 4" [isMale]="this.creds.gender === 'male'" (openingEnded)=stage4($event)>
     </app-values-set2>
+    <app-rank-set2 *ngIf="stage == 5" [isMale]="this.creds.gender === 'male'" (getRanking)=stage5($event)>
+    </app-rank-set2>
 </div>
