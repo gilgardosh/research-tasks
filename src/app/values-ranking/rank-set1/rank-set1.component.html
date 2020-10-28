@@ -1,1 +1,184 @@
-<p>rank-set1 works!</p>
+<div class="containter">
+    <div class="header">
+        <h1 style="text-align: center;">{{title}}</h1>
+    </div>
+    <div class="values-container">
+        <div class="values-pyramid">
+            <table class="pyramid-table">
+                <tr class="pyramid-row">
+                    <td style="width:37%">
+                        <h1 style="text-align: center;">חשוב מאוד</h1>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td style="width:37%"></td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td class="pyramid-cell">
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                    </td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td class="pyramid-cell">
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                    </td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td style="width:37%">
+                        <h1 style="text-align: center;">כלל לא חשוב</h1>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+
+                        </div>
+                    </td>
+                    <td style="width:37%"></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="values-stock">
+            <table style="height:100%">
+                <tr class="stock-row">
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val7.isStock">
+                            <img class="stock-img" [src]="valuesDict.val7.imgLink">
+                            <p>
+                                {{valuesDict.val7.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val6.isStock">
+                            <img class="stock-img" [src]="valuesDict.val6.imgLink">
+                            <p>
+                                {{valuesDict.val6.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val2.isStock">
+                            <img class="stock-img" [src]="valuesDict.val2.imgLink">
+                            <p>
+                                {{valuesDict.val2.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val3.isStock">
+                            <img class="stock-img" [src]="valuesDict.val3.imgLink">
+                            <p>
+                                {{valuesDict.val3.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                </tr>
+                <tr class="stock-row">
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val4.isStock">
+                            <img class="stock-img" [src]="valuesDict.val4.imgLink">
+                            <p>
+                                {{valuesDict.val4.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val0.isStock">
+                            <img class="stock-img" [src]="valuesDict.val0.imgLink">
+                            <p>
+                                {{valuesDict.val0.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val1.isStock">
+                            <img class="stock-img" [src]="valuesDict.val1.imgLink">
+                            <p>
+                                {{valuesDict.val1.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val8.isStock">
+                            <img class="stock-img" [src]="valuesDict.val8.imgLink">
+                            <p>
+                                {{valuesDict.val8.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                </tr>
+                <tr class="stock-row">
+                    <td class="stock-cell">
+
+                    </td>
+                    <td class="stock-cell">
+
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val9.isStock">
+                            <img class="stock-img" [src]="valuesDict.val9.imgLink">
+                            <p>
+                                {{valuesDict.val9.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val5.isStock">
+                            <img class="stock-img" [src]="valuesDict.val5.imgLink">
+                            <p>
+                                {{valuesDict.val5.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
