@@ -30,7 +30,7 @@ export class ValuesSet1Component implements OnInit {
   constructor(private audioService: AudioService) {}
 
   ngOnInit(): void {
-    this.subtitle = `עכשיו אנחנו נצא למסע דימיוני -<br>
+    this.subtitle = `עכשיו אנחנו נצא למסע דמיוני -<br>
     מסע בדברים החשובים לך בחיים,<br>
     במטרות שלך ואיך תרצ${this.isMale ? 'ה' : 'י'} לחיות בעתיד`;
     this.audioService.setAudio(
