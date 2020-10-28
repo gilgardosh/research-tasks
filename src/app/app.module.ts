@@ -9,6 +9,8 @@ import { ValuesRankingComponent } from './values-ranking/values-ranking.componen
 import { MenuComponent } from './menu/menu.component';
 import { ValuesSet1Component } from './values-ranking/values-set1/values-set1.component';
 import { RankSet1Component } from './values-ranking/rank-set1/rank-set1.component';
+import { ValuesSet2Component } from './values-ranking/values-set2/values-set2.component';
+import { RankSet2Component } from './values-ranking/rank-set2/rank-set2.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { RankSet1Component } from './values-ranking/rank-set1/rank-set1.componen
     MenuComponent,
     ValuesSet1Component,
     RankSet1Component,
+    ValuesSet2Component,
+    RankSet2Component,
   ],
   imports: [BrowserModule, SharedModule, AppRoutingModule],
   providers: [],
