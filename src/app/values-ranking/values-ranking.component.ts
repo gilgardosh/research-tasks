@@ -21,15 +21,12 @@ export class ValuesRankingComponent implements OnInit {
 
   getcreds(creds: credentials) {
     this.creds = creds;
-    this.stage2();
+    this.stage = 2;
   }
 
-  stage2() {
-    this.stage = 2;
-
-    // let audio = new Audio();
-    // audio.src = '../../assets/values-ranking/values_aud/01opening-F.wav';
-    // audio.load();
-    // audio.play();
+  openingEnded(endFlag: boolean) {
+    if (endFlag) {
+      this.stage = 3;
+    }
   }
 }

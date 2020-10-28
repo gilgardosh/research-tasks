@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AudioService } from 'src/app/shared/services/audio.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { AudioService } from 'src/app/shared/services/audio.service';
 })
 export class ValuesSet1Component implements OnInit {
   @Input() isMale: boolean;
+  @Output() openingEnded: EventEmitter<boolean> = new EventEmitter<boolean>();
   subtitle: string;
   imgLink: string = null;
   stage: number = 1;
@@ -123,8 +124,8 @@ export class ValuesSet1Component implements OnInit {
         break;
       }
       case 12: {
-        // TODO: end
-        break;
+        this.openingEnded.emit(true);
+        return 0;
       }
     }
     this.imgLink = `../../assets/values-ranking/values_img/val${valNum}.png`;
