@@ -1,0 +1,154 @@
+.containter {
+  //   padding: 100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.header {
+  margin: auto;
+  width: fill;
+  min-height: 70px;
+  background-color: lightcyan;
+  padding: 10px;
+}
+
+.values-container {
+  height: fill;
+  display: flex;
+  flex-direction: row;
+}
+
+.stock-container {
+  height: fill;
+  width: 55%;
+  background-color: rgb(228, 204, 241);
+}
+
+// .values-pyramid {
+//   height: fill;
+//   min-height: max-content;
+//   width: 45%;
+//   background-color: skyblue;
+// }
+
+.stock-table {
+  width: fill;
+  height: fill;
+}
+
+.stock-row {
+  width: fill;
+  height: 30%;
+  min-height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stock-cell {
+  width: 25%;
+  padding: 5px;
+}
+
+.stock-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.stock-img {
+  max-width: 90%;
+  max-height: 70%;
+}
+
+.pyramid-container {
+  height: fill;
+  width: 45%;
+  background-color: skyblue;
+}
+
+.pyramid-table {
+  width: fill;
+  height: fill;
+}
+
+.pyramid-row {
+  width: fill;
+  height: 18%;
+  min-height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pyramid-cell {
+  width: 25%;
+  margin: 5px;
+  height: fill;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: strech;
+  // justify-content: space-evenly;
+}
+
+.pyramid-square {
+  background: lightgray;
+  height: fill;
+  width: fill;
+  outline: 4px solid black;
+  padding: 3px;
+}
+
+.pyramid-cell-data {
+  height: fill;
+  width: fill;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pyramid-img {
+  width: 90%;
+  max-height: 60%;
+}
+
+.button-cell {
+  width: 37%;
+  height: fill;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.button-cell2 {
+  padding-left: 10px;
+  width: fill;
+  height: fill;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.accept-button {
+  width: fill;
+  height: fill;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}

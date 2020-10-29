@@ -1,1 +1,257 @@
-<p>rank-set2 works!</p>
+<div class="containter" *ngIf="stage<=11">
+    <div class="header">
+        <h1 style="text-align: center;">{{title}}</h1>
+    </div>
+    <div class="values-container">
+        <div class="pyramid-container">
+            <table class="pyramid-table">
+                <tr class="pyramid-row">
+                    <td style="width:37%">
+                        <h1 style="text-align: center;">חשוב מאוד</h1>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.veryvery != null">
+                                <img class="pyramid-img" [src]="orderedValues.veryvery.imgLink">
+                                <p>
+                                    {{orderedValues.veryvery.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width:37%"></td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td class="pyramid-cell">
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.very2 != null">
+                                <img class="pyramid-img" [src]="orderedValues.very2.imgLink">
+                                <p>
+                                    {{orderedValues.very2.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.very1 != null">
+                                <img class="pyramid-img" [src]="orderedValues.very1.imgLink">
+                                <p>
+                                    {{orderedValues.very1.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                    </td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average4 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average4.imgLink">
+                                <p>
+                                    {{orderedValues.average4.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average3 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average3.imgLink">
+                                <p>
+                                    {{orderedValues.average3.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average2 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average2.imgLink">
+                                <p>
+                                    {{orderedValues.average2.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average1 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average1.imgLink">
+                                <p>
+                                    {{orderedValues.average1.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td class="pyramid-cell">
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.not2 != null">
+                                <img class="pyramid-img" [src]="orderedValues.not2.imgLink">
+                                <p>
+                                    {{orderedValues.not2.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.not1 != null">
+                                <img class="pyramid-img" [src]="orderedValues.not1.imgLink">
+                                <p>
+                                    {{orderedValues.not1.text}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="pyramid-cell">
+                    </td>
+                </tr>
+                <tr class="pyramid-row">
+                    <td style="width:37%">
+                        <h1 style="text-align: center;">כלל לא חשוב</h1>
+                    </td>
+                    <td class="pyramid-cell">
+                        <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.notnot != null">
+                                <img class="pyramid-img" [src]="orderedValues.notnot.imgLink">
+                                <p>
+                                    {{orderedValues.notnot.text}}
+                                </p>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td class="button-cell">
+                        <div class="button-cell2">
+                            <button mat-raised-button color="warn" (click)="stepback()" [disabled]="calculating">
+                                צעד אחורה
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="stock-container">
+            <div class="accept-button" *ngIf="stage>=10">
+                <button mat-raised-button color="primary" (click)="this.getRanking.emit(orderedValues);">
+                    <h1>
+                        אני מרוצה
+                    </h1>
+                </button>
+            </div>
+            <table class="stock-table" *ngIf="stage<10">
+                <tr class="stock-row">
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val17.isStock"
+                            (click)="valueClick(valuesDict.val17)">
+                            <img class="stock-img" [src]="valuesDict.val17.imgLink">
+                            <p>
+                                {{valuesDict.val17.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val16.isStock"
+                            (click)="valueClick(valuesDict.val16)">
+                            <img class="stock-img" [src]="valuesDict.val16.imgLink">
+                            <p>
+                                {{valuesDict.val16.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val12.isStock"
+                            (click)="valueClick(valuesDict.val12)">
+                            <img class="stock-img" [src]="valuesDict.val12.imgLink">
+                            <p>
+                                {{valuesDict.val12.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val13.isStock"
+                            (click)="valueClick(valuesDict.val13)">
+                            <img class="stock-img" [src]="valuesDict.val13.imgLink">
+                            <p>
+                                {{valuesDict.val13.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                </tr>
+                <tr class="stock-row">
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val14.isStock"
+                            (click)="valueClick(valuesDict.val14)">
+                            <img class="stock-img" [src]="valuesDict.val14.imgLink">
+                            <p>
+                                {{valuesDict.val14.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val10.isStock"
+                            (click)="valueClick(valuesDict.val10)">
+                            <img class="stock-img" [src]="valuesDict.val10.imgLink">
+                            <p>
+                                {{valuesDict.val10.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val11.isStock"
+                            (click)="valueClick(valuesDict.val11)">
+                            <img class="stock-img" [src]="valuesDict.val11.imgLink">
+                            <p>
+                                {{valuesDict.val11.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val18.isStock"
+                            (click)="valueClick(valuesDict.val18)">
+                            <img class="stock-img" [src]="valuesDict.val18.imgLink">
+                            <p>
+                                {{valuesDict.val18.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                </tr>
+                <tr class="stock-row">
+                    <td class="stock-cell">
+
+                    </td>
+                    <td class="stock-cell">
+
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val19.isStock"
+                            (click)="valueClick(valuesDict.val19)">
+                            <img class="stock-img" [src]="valuesDict.val19.imgLink">
+                            <p>
+                                {{valuesDict.val19.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                    <td class="stock-cell">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val15.isStock"
+                            (click)="valueClick(valuesDict.val15)">
+                            <img class="stock-img" [src]="valuesDict.val15.imgLink">
+                            <p>
+                                {{valuesDict.val15.text}}
+                            </p>
+                        </mat-card>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
