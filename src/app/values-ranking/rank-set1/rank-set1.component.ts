@@ -131,6 +131,13 @@ export class RankSet1Component implements OnInit {
   stepback() {
     this.calculating = true;
     this.audioService.pauseAudio();
+    while (this.stage > 7) {
+      const valNum = this.orderedValues[this.valuesStages[this.stage - 2]]
+        .valNum;
+      this.valuesDict[`val${valNum}`].isStock = true;
+      this.orderedValues[this.valuesStages[this.stage - 2]] = null;
+      this.stage -= 1;
+    }
     if (this.stage >= 2) {
       const valNum = this.orderedValues[this.valuesStages[this.stage - 2]]
         .valNum;
@@ -202,25 +209,29 @@ export class RankSet1Component implements OnInit {
         break;
       }
       case 3: {
-        this.title = this.isMale
-          ? 'עכשיו הגענו לשורה השנייה. בטח יש עוד כמה דברים שחשובים לך. בחר 2 תמונות שמראות משהו שחשוב לך'
-          : 'עכשיו הגענו לשורה השנייה. בטח יש עוד כמה דברים שחשובים לך. בחרי 2 תמונות שמראות משהו שחשוב לך';
         this.audioService.setAudio(
           `../../assets/values-ranking/guidance_aud/inst-3-${
             this.isMale ? 'M' : 'F'
           }.wav`
         );
+      }
+      case 4: {
+        this.title = this.isMale
+          ? 'עכשיו הגענו לשורה השנייה. בטח יש עוד כמה דברים שחשובים לך. בחר 2 תמונות שמראות משהו שחשוב לך'
+          : 'עכשיו הגענו לשורה השנייה. בטח יש עוד כמה דברים שחשובים לך. בחרי 2 תמונות שמראות משהו שחשוב לך';
         break;
       }
       case 5: {
-        this.title = this.isMale
-          ? 'עכשיו נגיע לשורה אחת לפני האחרונה. היא שייכת לדברים שלא ממש חשובים לך. בחר עוד 2 תמונות בשביל השורה הזאת'
-          : 'עכשיו נגיע לשורה אחת לפני האחרונה. היא שייכת לדברים שלא ממש חשובים לך. בחרי עוד 2 תמונות בשביל השורה הזאת';
         this.audioService.setAudio(
           `../../assets/values-ranking/guidance_aud/inst-4-${
             this.isMale ? 'M' : 'F'
           }.wav`
         );
+      }
+      case 6: {
+        this.title = this.isMale
+          ? 'עכשיו נגיע לשורה אחת לפני האחרונה. היא שייכת לדברים שלא ממש חשובים לך. בחר עוד 2 תמונות בשביל השורה הזאת'
+          : 'עכשיו נגיע לשורה אחת לפני האחרונה. היא שייכת לדברים שלא ממש חשובים לך. בחרי עוד 2 תמונות בשביל השורה הזאת';
         break;
       }
       case 7: {
