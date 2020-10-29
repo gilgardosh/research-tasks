@@ -10,6 +10,8 @@
             <div *ngIf="!!subtitle">
                 <h1 [innerHTML]="this.subtitle" style="text-align: center;"></h1>
             </div>
+            <button *ngIf="stage==12" mat-raised-button color="primary"
+                (click)="this.openingEnded.emit(true);">המשך</button>
         </mat-card-content>
     </mat-card>
 </div>

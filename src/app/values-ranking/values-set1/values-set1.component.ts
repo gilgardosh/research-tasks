@@ -124,7 +124,6 @@ export class ValuesSet1Component implements OnInit {
         break;
       }
       case 12: {
-        this.openingEnded.emit(true);
         return 0;
       }
     }

@@ -130,7 +130,6 @@ export class ValuesSet2Component implements OnInit {
         break;
       }
       case 12: {
-        this.openingEnded.emit(true);
         return 0;
       }
     }
