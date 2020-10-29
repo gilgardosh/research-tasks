@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.text-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  align-items: center;
+  padding: 10px;
+  height: 10vh;
+}
+
+.values-div {
+  padding: 10px;
+  height: 40vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sum-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  margin: 10px;
+}
+
+.sum-img {
+  max-width: 90%;
+  max-height: 70%;
+}

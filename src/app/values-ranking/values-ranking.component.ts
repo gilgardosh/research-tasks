@@ -46,5 +46,6 @@ export class ValuesRankingComponent implements OnInit {
 
   stage5(ranking2Data: any) {
     // TODO: send data
+    this.stage = 6;
   }
 }
