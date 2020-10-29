@@ -11,6 +11,7 @@ import { ValuesSet1Component } from './values-ranking/values-set1/values-set1.co
 import { RankSet1Component } from './values-ranking/rank-set1/rank-set1.component';
 import { ValuesSet2Component } from './values-ranking/values-set2/values-set2.component';
 import { RankSet2Component } from './values-ranking/rank-set2/rank-set2.component';
+import { SummaryComponent } from './values-ranking/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RankSet2Component } from './values-ranking/rank-set2/rank-set2.componen
     RankSet1Component,
     ValuesSet2Component,
     RankSet2Component,
+    SummaryComponent,
   ],
   imports: [BrowserModule, SharedModule, AppRoutingModule],
   providers: [],
