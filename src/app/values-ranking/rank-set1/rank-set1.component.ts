@@ -130,6 +130,7 @@ export class RankSet1Component implements OnInit {
 
   stepback() {
     this.calculating = true;
+    this.audioService.pauseAudio();
     if (this.stage >= 2) {
       const valNum = this.orderedValues[this.valuesStages[this.stage - 2]]
         .valNum;
