@@ -1,9 +1,9 @@
-<div class="containter">
+<div class="containter" *ngIf="stage<=11">
     <div class="header">
         <h1 style="text-align: center;">{{title}}</h1>
     </div>
     <div class="values-container">
-        <div class="values-pyramid">
+        <div class="pyramid-container">
             <table class="pyramid-table">
                 <tr class="pyramid-row">
                     <td style="width:37%">
@@ -11,7 +11,12 @@
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.veryvery != null">
+                                <img class="pyramid-img" [src]="orderedValues.veryvery.imgLink">
+                                <p>
+                                    {{orderedValues.veryvery.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td style="width:37%"></td>
@@ -21,12 +26,22 @@
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.very2 != null">
+                                <img class="pyramid-img" [src]="orderedValues.very2.imgLink">
+                                <p>
+                                    {{orderedValues.very2.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.very1 != null">
+                                <img class="pyramid-img" [src]="orderedValues.very1.imgLink">
+                                <p>
+                                    {{orderedValues.very1.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
@@ -35,22 +50,42 @@
                 <tr class="pyramid-row">
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average4 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average4.imgLink">
+                                <p>
+                                    {{orderedValues.average4.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average3 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average3.imgLink">
+                                <p>
+                                    {{orderedValues.average3.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average2 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average2.imgLink">
+                                <p>
+                                    {{orderedValues.average2.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.average1 != null">
+                                <img class="pyramid-img" [src]="orderedValues.average1.imgLink">
+                                <p>
+                                    {{orderedValues.average1.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -59,12 +94,22 @@
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.not2 != null">
+                                <img class="pyramid-img" [src]="orderedValues.not2.imgLink">
+                                <p>
+                                    {{orderedValues.not2.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
-
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.not1 != null">
+                                <img class="pyramid-img" [src]="orderedValues.not1.imgLink">
+                                <p>
+                                    {{orderedValues.not1.text}}
+                                </p>
+                            </div>
                         </div>
                     </td>
                     <td class="pyramid-cell">
@@ -76,19 +121,38 @@
                     </td>
                     <td class="pyramid-cell">
                         <div class="pyramid-square">
+                            <div class="pyramid-cell-data" *ngIf="orderedValues.notnot != null">
+                                <img class="pyramid-img" [src]="orderedValues.notnot.imgLink">
+                                <p>
+                                    {{orderedValues.notnot.text}}
+                                </p>
+                            </div>
 
                         </div>
                     </td>
-                    <td style="width:37%"></td>
+                    <td class="button-cell">
+                        <div class="button-cell2">
+                            <button mat-raised-button color="warn" (click)="stepback()" [disabled]="calculating">
+                                צעד אחורה
+                            </button>
+                        </div>
+                    </td>
                 </tr>
-
             </table>
         </div>
-        <div class="values-stock">
-            <table style="height:100%">
+        <div class="stock-container">
+            <div class="accept-button" *ngIf="stage>=10">
+                <button mat-raised-button color="primary" (click)="this.getRanking.emit(orderedValues);">
+                    <h1>
+                        אני מרוצה
+                    </h1>
+                </button>
+            </div>
+            <table class="stock-table" *ngIf="stage<10">
                 <tr class="stock-row">
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val7.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val7.isStock"
+                            (click)="valueClick(valuesDict.val7)">
                             <img class="stock-img" [src]="valuesDict.val7.imgLink">
                             <p>
                                 {{valuesDict.val7.text}}
@@ -96,7 +160,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val6.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val6.isStock"
+                            (click)="valueClick(valuesDict.val6)">
                             <img class="stock-img" [src]="valuesDict.val6.imgLink">
                             <p>
                                 {{valuesDict.val6.text}}
@@ -104,7 +169,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val2.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val2.isStock"
+                            (click)="valueClick(valuesDict.val2)">
                             <img class="stock-img" [src]="valuesDict.val2.imgLink">
                             <p>
                                 {{valuesDict.val2.text}}
@@ -112,7 +178,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val3.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val3.isStock"
+                            (click)="valueClick(valuesDict.val3)">
                             <img class="stock-img" [src]="valuesDict.val3.imgLink">
                             <p>
                                 {{valuesDict.val3.text}}
@@ -122,7 +189,8 @@
                 </tr>
                 <tr class="stock-row">
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val4.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val4.isStock"
+                            (click)="valueClick(valuesDict.val4)">
                             <img class="stock-img" [src]="valuesDict.val4.imgLink">
                             <p>
                                 {{valuesDict.val4.text}}
@@ -130,7 +198,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val0.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val0.isStock"
+                            (click)="valueClick(valuesDict.val0)">
                             <img class="stock-img" [src]="valuesDict.val0.imgLink">
                             <p>
                                 {{valuesDict.val0.text}}
@@ -138,7 +207,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val1.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val1.isStock"
+                            (click)="valueClick(valuesDict.val1)">
                             <img class="stock-img" [src]="valuesDict.val1.imgLink">
                             <p>
                                 {{valuesDict.val1.text}}
@@ -146,7 +216,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val8.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val8.isStock"
+                            (click)="valueClick(valuesDict.val8)">
                             <img class="stock-img" [src]="valuesDict.val8.imgLink">
                             <p>
                                 {{valuesDict.val8.text}}
@@ -162,7 +233,8 @@
 
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val9.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val9.isStock"
+                            (click)="valueClick(valuesDict.val9)">
                             <img class="stock-img" [src]="valuesDict.val9.imgLink">
                             <p>
                                 {{valuesDict.val9.text}}
@@ -170,7 +242,8 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="valuesDict.val5.isStock">
+                        <mat-card class="stock-card" *ngIf="valuesDict.val5.isStock"
+                            (click)="valueClick(valuesDict.val5)">
                             <img class="stock-img" [src]="valuesDict.val5.imgLink">
                             <p>
                                 {{valuesDict.val5.text}}
