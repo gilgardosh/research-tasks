@@ -7,40 +7,28 @@
             <table>
                 <tr>
                     <td>
-                        <b>משפחה</b>
+                        <b>בית ספר</b>
                         <br>
-                        <span>הקלידו בבקשה את מספר המשפחה</span>
+                        <span>הקלידו בבקשה את מספר בית הספר</span>
                     </td>
                     <td style="width:20px;"></td>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input [formControl]="family" matInput>
+                            <input [formControl]="schoolID" matInput>
                         </mat-form-field>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <b>תאום</b>
+                        <b>ילד</b>
                         <br>
-                        <span>בחרו איזה תאום ישחק עתה</span>
+                        <span>הקלידו בבקשה את מספר הילד</span>
                     </td>
-                    <td></td>
+                    <td style="width:20px;"></td>
                     <td>
-                        <mat-radio-group [(ngModel)]="creds.twin">
-                            <table style="width:100%">
-                                <td class="data-cell">
-                                    תאום א'
-                                    <br>
-                                    <mat-radio-button color="primary" class="selection" value="a"></mat-radio-button>
-                                </td>
-                                <td class="gap-cell"></td>
-                                <td class="data-cell">
-                                    תאום ב'
-                                    <br>
-                                    <mat-radio-button color="primary" class="selection" value="b"></mat-radio-button>
-                                </td>
-                            </table>
-                        </mat-radio-group>
+                        <mat-form-field class="example-full-width">
+                            <input [formControl]="childID" matInput>
+                        </mat-form-field>
                     </td>
                 </tr>
                 <tr>
@@ -69,7 +57,8 @@
                 </tr>
             </table>
             <button mat-raised-button color="primary" (click)="start()">היכנסו למשחק</button>
-            <p *ngIf="invalidFamilyFlag" style="color:red; font-weight: bold;">מספר המשפחה אינו מתאים</p>
+            <p *ngIf="invalidSchoolIDFlag" style="color:red; font-weight: bold;">מספר בית הספר אינו מתאים</p>
+            <p *ngIf="invalidChildIDFlag" style="color:red; font-weight: bold;">מספר התאום/ה אינו מתאים</p>
         </mat-card-content>
     </mat-card>
 </div>

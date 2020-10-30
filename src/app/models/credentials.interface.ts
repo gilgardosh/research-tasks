@@ -1,5 +1,5 @@
 export interface credentials {
-  family: string;
-  twin: 'a' | 'b';
-  gender: 'male' | 'female';
+  schoolID: string;
+  childID: string;
+  gender: 'M' | 'F';
 }

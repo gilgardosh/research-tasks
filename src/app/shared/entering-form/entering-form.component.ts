@@ -11,27 +11,37 @@ export class EnteringFormComponent implements OnInit {
   @Output() gotCreds: EventEmitter<credentials> = new EventEmitter<
     credentials
   >();
-  family = new FormControl('', [
+  schoolID = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[0-9]*'),
+  ]);
+  childID = new FormControl('', [
     Validators.required,
     Validators.pattern('[0-9]*'),
   ]);
   creds: credentials = {
-    family: '',
-    twin: 'a',
-    gender: 'male',
+    schoolID: '',
+    childID: 'a',
+    gender: 'M',
   };
-  invalidFamilyFlag: boolean = false;
+  invalidSchoolIDFlag: boolean = false;
+  invalidChildIDFlag: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   start(): credentials | void {
-    if (!!this.family.errors || this.family.value == 0) {
-      this.invalidFamilyFlag = true;
+    if (!!this.schoolID.errors || this.schoolID.value == 0) {
+      this.invalidSchoolIDFlag = true;
+    } else if (!!this.childID.errors || this.childID.value == 0) {
+      this.invalidSchoolIDFlag = false;
+      this.invalidChildIDFlag = true;
     } else {
-      this.creds.family = this.family.value;
-      this.invalidFamilyFlag = false;
+      this.creds.schoolID = this.schoolID.value;
+      this.creds.childID = this.childID.value;
+      this.invalidSchoolIDFlag = false;
+      this.invalidChildIDFlag = false;
       this.gotCreds.emit(this.creds);
     }
   }
