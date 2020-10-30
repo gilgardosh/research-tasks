@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { credentials } from '../models';
+import { credentials, valuesRankingData } from '../models';
 
 @Component({
   selector: 'app-values-ranking',
@@ -14,8 +14,15 @@ export class ValuesRankingComponent implements OnInit {
    * 3 - rank values set 1
    * 4 - introduce values set 2
    * 5 - rank values set 2
+   * 6 - summary
    */
   stage: number = 1;
+  // mainData: valuesRankingData = new valuesRankingData();
+  mainData = {
+    creds: null,
+    'rank-set1': null,
+    'rank-set2': null,
+  };
   creds: credentials;
 
   constructor() {}
@@ -23,6 +30,7 @@ export class ValuesRankingComponent implements OnInit {
   ngOnInit(): void {}
 
   stage1(creds: credentials) {
+    // this.mainData.setCredentials(creds.schoolID, creds.childID, creds.gender);
     this.creds = creds;
     this.stage = 2;
   }
@@ -34,7 +42,7 @@ export class ValuesRankingComponent implements OnInit {
   }
 
   stage3(ranking1Data: any) {
-    // TODO: get data
+    this.mainData['rank-set1'] = ranking1Data;
     this.stage = 4;
   }
 
@@ -45,7 +53,7 @@ export class ValuesRankingComponent implements OnInit {
   }
 
   stage5(ranking2Data: any) {
-    // TODO: send data
+    this.mainData['rank-set2'] = ranking2Data;
     this.stage = 6;
   }
 }
