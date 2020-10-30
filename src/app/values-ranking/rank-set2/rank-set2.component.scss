@@ -1,7 +1,7 @@
 .containter {
   //   padding: 100px;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -9,41 +9,34 @@
 }
 
 .header {
+  height: 6vh;
+  width: 100vw;
   margin: auto;
-  width: fill;
-  min-height: 70px;
   background-color: lightcyan;
   padding: 10px;
 }
 
 .values-container {
-  height: fill;
+  height: 94vh;
+  width: 100vw;
   display: flex;
   flex-direction: row;
 }
 
 .stock-container {
-  height: fill;
-  width: 55%;
+  height: 94vh;
+  width: 55vw;
   background-color: rgb(228, 204, 241);
 }
 
-// .values-pyramid {
-//   height: fill;
-//   min-height: max-content;
-//   width: 45%;
-//   background-color: skyblue;
-// }
-
 .stock-table {
-  width: fill;
-  height: fill;
+  height: 94vh;
+  width: 55vw;
 }
 
 .stock-row {
-  width: fill;
-  height: 30%;
-  min-height: max-content;
+  height: 31vh;
+  width: 55vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,11 +44,14 @@
 }
 
 .stock-cell {
-  width: 25%;
+  height: 31vh;
+  width: 13.5vw;
   padding: 5px;
 }
 
 .stock-card {
+  height: 29vh;
+  width: 12.5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,24 +61,24 @@
 }
 
 .stock-img {
-  max-width: 90%;
-  max-height: 70%;
+  height: 20vh;
+  width: 11vw;
 }
 
 .pyramid-container {
-  height: fill;
-  width: 45%;
+  height: 94vh;
+  width: 45vw;
   background-color: skyblue;
 }
 
 .pyramid-table {
-  width: fill;
-  height: fill;
+  height: 94vh;
+  width: 45vw;
 }
 
 .pyramid-row {
-  width: fill;
-  height: 18%;
+  height: 18vh;
+  width: 45vw;
   min-height: max-content;
   display: flex;
   flex-direction: row;
@@ -91,40 +87,41 @@
 }
 
 .pyramid-cell {
-  width: 25%;
-  margin: 5px;
-  height: fill;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: strech;
-  // justify-content: space-evenly;
+  height: 18vh;
+  width: 11vw;
+  padding: 5px;
 }
 
 .pyramid-square {
+  overflow: hidden;
   background: lightgray;
-  height: fill;
-  width: fill;
+  width: 10.5vw;
+  height: 17vh;
   outline: 4px solid black;
   padding: 3px;
 }
 
 .pyramid-cell-data {
-  height: fill;
-  width: fill;
+  width: 10.5vw;
+  height: 16.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: start;
 }
 
 .pyramid-img {
-  width: 90%;
-  max-height: 60%;
+  max-width: 8vw;
+  max-height: 13vh;
+}
+
+.pyramid-text {
+  height: 13.5vh;
 }
 
 .button-cell {
-  width: 37%;
-  height: fill;
+  height: 18vh;
+  width: 17vw;
   display: flex;
   flex-direction: row;
   align-content: flex-end;
@@ -133,9 +130,9 @@
 }
 
 .button-cell2 {
+  height: 18vh;
+  width: 17vw;
   padding-left: 10px;
-  width: fill;
-  height: fill;
   display: flex;
   flex-direction: column;
   align-content: flex-end;
@@ -144,8 +141,8 @@
 }
 
 .accept-button {
-  width: fill;
-  height: fill;
+  width: 55vw;
+  height: 94vh;
   display: flex;
   flex-direction: column;
   align-content: center;

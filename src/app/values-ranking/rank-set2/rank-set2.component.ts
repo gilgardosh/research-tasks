@@ -1,87 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { AudioService } from 'src/app/shared/services/audio.service';
+import { pbvs, valuesRankingData } from '../value-ranking.service';
 
 @Component({
   selector: 'app-rank-set2',
   templateUrl: './rank-set2.component.html',
   styleUrls: ['./rank-set2.component.scss'],
+  providers: [AudioService],
 })
-export class RankSet2Component implements OnInit {
-  @Input() isMale: boolean;
-  @Output() getRanking: EventEmitter<any> = new EventEmitter<any>();
+export class RankSet2Component implements OnInit, OnDestroy {
+  @Output() gotRanking: EventEmitter<boolean> = new EventEmitter<boolean>();
+  isMale: boolean = true;
   title: string;
   stage: number = 1;
   calculating: boolean = false;
-
-  valuesDict: {
-    [U: string]: {
-      valNum: number;
-      text: string;
-      imgLink: string;
-      isStock: boolean;
-    };
-  } = {
-    val10: {
-      valNum: 10,
-      text: '',
-      imgLink: this.getImgLink(10),
-      isStock: true,
-    },
-    val11: {
-      valNum: 11,
-      text: '',
-      imgLink: this.getImgLink(11),
-      isStock: true,
-    },
-    val12: {
-      valNum: 12,
-      text: '',
-      imgLink: this.getImgLink(12),
-      isStock: true,
-    },
-    val13: {
-      valNum: 13,
-      text: '',
-      imgLink: this.getImgLink(13),
-      isStock: true,
-    },
-    val14: {
-      valNum: 14,
-      text: '',
-      imgLink: this.getImgLink(14),
-      isStock: true,
-    },
-    val15: {
-      valNum: 15,
-      text: '',
-      imgLink: this.getImgLink(15),
-      isStock: true,
-    },
-    val16: {
-      valNum: 16,
-      text: '',
-      imgLink: this.getImgLink(16),
-      isStock: true,
-    },
-    val17: {
-      valNum: 17,
-      text: '',
-      imgLink: this.getImgLink(17),
-      isStock: true,
-    },
-    val18: {
-      valNum: 18,
-      text: '',
-      imgLink: this.getImgLink(18),
-      isStock: true,
-    },
-    val19: {
-      valNum: 19,
-      text: '',
-      imgLink: this.getImgLink(19),
-      isStock: true,
-    },
-  };
+  playerSubscription: Subscription;
 
   orderedValues = {
     veryvery: null,
@@ -109,77 +49,65 @@ export class RankSet2Component implements OnInit {
     'average4',
   ];
 
-  constructor(private audioService: AudioService) {}
+  constructor(
+    private audioService: AudioService,
+    public dataService: valuesRankingData
+  ) {}
 
   ngOnInit(): void {
-    this.valuesDict.val10.text = `להראות לכולם מה אני יכול${
-      this.isMale ? '' : 'ה'
-    }`;
-    this.valuesDict.val11.text = `לעשות חיים`;
-    this.valuesDict.val12.text = `להיות המנהיג${this.isMale ? '' : 'ה'}`;
-    this.valuesDict.val13.text = `לצאת להרפתקאות`;
-    this.valuesDict.val14.text = `להפעיל את הדמיון`;
-    this.valuesDict.val15.text = `להיות כמו כולם`;
-    this.valuesDict.val16.text = `לשמח אחרים`;
-    this.valuesDict.val17.text = `לשמור על הטבע`;
-    this.valuesDict.val18.text = `להיות מוג${this.isMale ? 'ן' : 'נת'} ובטוח${
-      this.isMale ? '' : 'ה'
-    }`;
-    this.valuesDict.val19.text = `ללמוד על מה שהיה פעם מזמן`;
-
+    this.isMale = this.dataService.gender === 'M';
     this.playSound();
+  }
+
+  ngOnDestroy(): void {
+    if (this.playerSubscription) this.playerSubscription.unsubscribe();
   }
 
   stepback() {
     this.calculating = true;
+    if (this.playerSubscription) this.playerSubscription.unsubscribe();
     this.audioService.pauseAudio();
-    while (this.stage > 7) {
-      const valNum = this.orderedValues[this.valuesStages[this.stage - 2]]
-        .valNum;
-      this.valuesDict[`val${valNum}`].isStock = true;
-      this.orderedValues[this.valuesStages[this.stage - 2]] = null;
+    this.stage -= 1;
+    while (this.stage >= 7) {
+      this.orderedValues[this.valuesStages[this.stage - 1]].isStock = true;
+      this.orderedValues[this.valuesStages[this.stage - 1]].rank = null;
+      this.orderedValues[this.valuesStages[this.stage - 1]] = null;
       this.stage -= 1;
     }
-    if (this.stage >= 2) {
-      const valNum = this.orderedValues[this.valuesStages[this.stage - 2]]
-        .valNum;
-      this.valuesDict[`val${valNum}`].isStock = true;
-      this.orderedValues[this.valuesStages[this.stage - 2]] = null;
-      this.stage -= 1;
+    if (this.stage >= 1) {
+      this.orderedValues[this.valuesStages[this.stage - 1]].isStock = true;
+      this.orderedValues[this.valuesStages[this.stage - 1]].rank = null;
+      this.orderedValues[this.valuesStages[this.stage - 1]] = null;
     }
     this.playSound();
     this.calculating = false;
   }
 
-  valueClick(val: {
-    valNum: number;
-    text: string;
-    imgLink: string;
-    isStock: boolean;
-  }) {
+  valueClick(val: pbvs) {
     if (!this.calculating) {
       this.calculating = true;
+      if (this.playerSubscription) this.playerSubscription.unsubscribe();
       this.stage += 1;
-      val.isStock = false;
-      this.orderedValues[this.valuesStages[this.stage - 2]] = {
-        ...val,
-      };
       this.playSound();
+      val.isStock = false;
+      this.orderedValues[this.valuesStages[this.stage - 2]] = val;
       if (this.stage >= 7) {
-        this.audioService.getPlayerStatus().subscribe((res) => {
-          if (res == 'ended') {
-            for (let dictVal in this.valuesDict) {
-              if (this.valuesDict[dictVal].isStock) {
-                this.valuesDict[dictVal].isStock = false;
-                this.stage += 1;
-                this.orderedValues[this.valuesStages[this.stage - 2]] = {
-                  ...this.valuesDict[dictVal],
-                };
+        this.playerSubscription = this.audioService
+          .getPlayerStatus()
+          .subscribe((res) => {
+            if (res == 'ended') {
+              for (let i = 11; i <= 20; i++) {
+                if (this.dataService['pbvs' + i].isStock) {
+                  let val = this.dataService['pbvs' + i];
+                  this.stage += 1;
+                  val.isStock = false;
+                  val.rank = this.getRank(this.valuesStages[this.stage - 2]);
+                  this.orderedValues[this.valuesStages[this.stage - 2]] = val;
+                }
               }
+              this.calculating = false;
             }
-            this.calculating = false;
-          }
-        });
+          });
       } else {
         this.calculating = false;
       }
@@ -249,6 +177,43 @@ export class RankSet2Component implements OnInit {
         break;
       }
     }
+  }
+
+  getRank(rank: string) {
+    let renkVal: number;
+    switch (rank) {
+      case 'veryvery': {
+        renkVal = 5;
+        break;
+      }
+      case 'vary1': {
+      }
+      case 'very2': {
+        renkVal = 4;
+        break;
+      }
+      case 'not1': {
+      }
+      case 'not2': {
+        renkVal = 2;
+        break;
+      }
+      case 'notnot': {
+        renkVal = 1;
+        break;
+      }
+      case 'average1': {
+      }
+      case 'average2': {
+      }
+      case 'average3': {
+      }
+      case 'average4': {
+        renkVal = 3;
+        break;
+      }
+    }
+    return renkVal;
   }
 
   getImgLink(num: number) {
