@@ -1,5 +1,5 @@
 <div class="containter">
-    <app-rank-set1 *ngIf="stage == 3" [isMale]="this.creds.gender === 'M'" (getRanking)=stage3($event)>
+    <app-rank-set1 *ngIf="stage == 3" (gotRanking)=stage3($event)>
     </app-rank-set1>
     <app-rank-set2 *ngIf="stage == 5" [isMale]="this.creds.gender === 'M'" (getRanking)=stage5($event)>
     </app-rank-set2>

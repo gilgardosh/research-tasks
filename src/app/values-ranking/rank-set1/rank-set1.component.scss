@@ -1,7 +1,7 @@
 .containter {
   //   padding: 100px;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,40 +10,33 @@
 
 .header {
   margin: auto;
-  width: fill;
-  min-height: 70px;
+  width: 100vw;
+  height: 6vh;
   background-color: lightcyan;
   padding: 10px;
 }
 
 .values-container {
-  height: fill;
+  height: 94vh;
+  width: 100vw;
   display: flex;
   flex-direction: row;
 }
 
 .stock-container {
-  height: fill;
-  width: 55%;
+  height: 94vh;
+  width: 55vw;
   background-color: rgb(228, 204, 241);
 }
 
-// .values-pyramid {
-//   height: fill;
-//   min-height: max-content;
-//   width: 45%;
-//   background-color: skyblue;
-// }
-
 .stock-table {
-  width: fill;
-  height: fill;
+  width: 94vh;
+  height: 55vw;
 }
 
 .stock-row {
-  width: fill;
-  height: 30%;
-  min-height: max-content;
+  width: 55vw;
+  height: 31vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,11 +44,14 @@
 }
 
 .stock-cell {
-  width: 25%;
+  width: 13.5vw;
+  height: 31vh;
   padding: 5px;
 }
 
 .stock-card {
+  width: 12.5vw;
+  height: 29vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,24 +61,24 @@
 }
 
 .stock-img {
-  max-width: 90%;
-  max-height: 70%;
+  width: 11vw;
+  height: 20vh;
 }
 
 .pyramid-container {
-  height: fill;
-  width: 45%;
+  height: 94vh;
+  width: 45vw;
   background-color: skyblue;
 }
 
 .pyramid-table {
-  width: fill;
-  height: fill;
+  height: 94vh;
+  width: 45vw;
 }
 
 .pyramid-row {
-  width: fill;
-  height: 18%;
+  height: 18vh;
+  width: 45vw;
   min-height: max-content;
   display: flex;
   flex-direction: row;
@@ -91,26 +87,22 @@
 }
 
 .pyramid-cell {
-  width: 25%;
-  margin: 5px;
-  height: fill;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: strech;
-  // justify-content: space-evenly;
+  height: 18vh;
+  width: 11vw;
+  padding: 5px;
 }
 
 .pyramid-square {
   background: lightgray;
-  height: fill;
-  width: fill;
+  width: 10.5vw;
+  height: 17vh;
   outline: 4px solid black;
   padding: 3px;
 }
 
 .pyramid-cell-data {
-  height: fill;
-  width: fill;
+  width: 10.5vw;
+  height: 16.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,8 +110,8 @@
 }
 
 .pyramid-img {
-  width: 90%;
-  max-height: 60%;
+  width: 8vw;
+  max-height: 16vh;
 }
 
 .button-cell {
