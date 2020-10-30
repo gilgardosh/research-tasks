@@ -1,14 +1,14 @@
 export class valuesRankingData {
   schoolID: string;
   childID: string;
-  gender: 'M' | 'F';
+  gender: 'M' | 'F' = 'M';
   pbvs1: pbvs = {
     valNum: 3,
     text: '',
     imgLink: 'val3.png',
     audioLink: '',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs2: pbvs = {
     valNum: 2,
@@ -16,7 +16,7 @@ export class valuesRankingData {
     imgLink: 'val2.png',
     audioLink: '',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs3: pbvs = {
     valNum: 6,
@@ -24,7 +24,7 @@ export class valuesRankingData {
     imgLink: 'val6.png',
     audioLink: 'val6.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs4: pbvs = {
     valNum: 7,
@@ -32,7 +32,7 @@ export class valuesRankingData {
     imgLink: 'val7.png',
     audioLink: 'val7.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs5: pbvs = {
     valNum: 8,
@@ -40,7 +40,7 @@ export class valuesRankingData {
     imgLink: 'val8.png',
     audioLink: 'val8.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs6: pbvs = {
     valNum: 1,
@@ -48,7 +48,7 @@ export class valuesRankingData {
     imgLink: 'val1.png',
     audioLink: 'val1.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs7: pbvs = {
     valNum: 0,
@@ -56,7 +56,7 @@ export class valuesRankingData {
     imgLink: 'val0.png',
     audioLink: 'val0.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs8: pbvs = {
     valNum: 4,
@@ -64,7 +64,7 @@ export class valuesRankingData {
     imgLink: 'val4.png',
     audioLink: 'val4.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs9: pbvs = {
     valNum: 5,
@@ -72,7 +72,7 @@ export class valuesRankingData {
     imgLink: 'val5.png',
     audioLink: 'val5.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs10: pbvs = {
     valNum: 9,
@@ -80,7 +80,7 @@ export class valuesRankingData {
     imgLink: 'val9.png',
     audioLink: '',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs11: pbvs = {
     valNum: 12,
@@ -88,7 +88,7 @@ export class valuesRankingData {
     imgLink: 'val12.png',
     audioLink: '',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs12: pbvs = {
     valNum: 10,
@@ -96,7 +96,7 @@ export class valuesRankingData {
     imgLink: 'val10.png',
     audioLink: '',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs13: pbvs = {
     valNum: 11,
@@ -104,7 +104,7 @@ export class valuesRankingData {
     imgLink: 'val11.png',
     audioLink: 'val11.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs14: pbvs = {
     valNum: 13,
@@ -112,7 +112,7 @@ export class valuesRankingData {
     imgLink: 'val13.png',
     audioLink: 'val13.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs15: pbvs = {
     valNum: 14,
@@ -120,7 +120,7 @@ export class valuesRankingData {
     imgLink: 'val14.png',
     audioLink: 'val14.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs16: pbvs = {
     valNum: 18,
@@ -128,7 +128,7 @@ export class valuesRankingData {
     imgLink: 'val18.png',
     audioLink: '',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs17: pbvs = {
     valNum: 15,
@@ -136,7 +136,7 @@ export class valuesRankingData {
     imgLink: 'val15.png',
     audioLink: 'val15.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs18: pbvs = {
     valNum: 19,
@@ -144,7 +144,7 @@ export class valuesRankingData {
     imgLink: 'val19.png',
     audioLink: 'val19.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs19: pbvs = {
     valNum: 16,
@@ -152,7 +152,7 @@ export class valuesRankingData {
     imgLink: 'val16.png',
     audioLink: 'val16.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
   pbvs20: pbvs = {
     valNum: 17,
@@ -160,7 +160,7 @@ export class valuesRankingData {
     imgLink: 'val17.png',
     audioLink: 'val17.wav',
     rank: null,
-    isStock: false,
+    isStock: true,
   };
 
   constructor() {}
