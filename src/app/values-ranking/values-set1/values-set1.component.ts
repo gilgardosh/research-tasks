@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AudioService } from 'src/app/shared/services/audio.service';
+import { pbvs, valuesRankingData } from '../value-ranking.service';
 
 @Component({
   selector: 'app-values-set1',
@@ -7,7 +8,6 @@ import { AudioService } from 'src/app/shared/services/audio.service';
   styleUrls: ['./values-set1.component.scss'],
 })
 export class ValuesSet1Component implements OnInit {
-  @Input() isMale: boolean;
   @Output() openingEnded: EventEmitter<boolean> = new EventEmitter<boolean>();
   subtitle: string;
   imgLink: string = null;
@@ -27,20 +27,23 @@ export class ValuesSet1Component implements OnInit {
    * 11 - val9
    */
 
-  constructor(private audioService: AudioService) {}
+  constructor(
+    private audioService: AudioService,
+    public dataService: valuesRankingData
+  ) {}
 
   ngOnInit(): void {
     this.subtitle = `עכשיו אנחנו נצא למסע דמיוני -<br>
     מסע בדברים החשובים לך בחיים,<br>
-    במטרות שלך ואיך תרצ${this.isMale ? 'ה' : 'י'} לחיות בעתיד`;
+    במטרות שלך ואיך תרצ${
+      this.dataService.gender === 'M' ? 'ה' : 'י'
+    } לחיות בעתיד`;
     this.audioService.setAudio(
-      `../../assets/values-ranking/values_aud/opening1-${
-        this.isMale ? 'M' : 'F'
-      }.wav`
+      `../../assets/values-ranking/values_aud/opening1-${this.dataService.gender}.wav`
     );
 
     this.audioService.getTimeElapsed().subscribe((res) => {
-      if (this.isMale) {
+      if (this.dataService.gender === 'M') {
         this.openingMale(res);
       } else {
         this.openingFemale(res);
@@ -56,81 +59,57 @@ export class ValuesSet1Component implements OnInit {
   }
 
   introduceValues() {
-    let valNum: number;
-    let audioString: string;
+    let curVal: pbvs;
     switch (this.stage) {
       case 2: {
-        valNum = 3;
-        this.subtitle = this.isMale
-          ? 'להיות עשיר ועם כוח'
-          : 'להיות עשירה ועם כוח';
-        audioString = `${valNum}-${this.isMale ? 'M' : 'F'}`;
+        curVal = this.dataService.pbvs1;
         break;
       }
       case 3: {
-        valNum = 2;
-        this.subtitle = this.isMale ? 'להיות הכי טוב' : 'להיות הכי טובה';
-        audioString = `${valNum}-${this.isMale ? 'M' : 'F'}`;
+        curVal = this.dataService.pbvs2;
         break;
       }
       case 4: {
-        valNum = 6;
-        this.subtitle = 'להנות מהחיים';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs3;
         break;
       }
       case 5: {
-        valNum = 7;
-        this.subtitle = 'לעשות דברים מרגשים';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs4;
         break;
       }
       case 6: {
-        valNum = 8;
-        this.subtitle = 'לגלות דברים חדשים';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs5;
         break;
       }
       case 7: {
-        valNum = 1;
-        this.subtitle = 'לשמור על הבטיחות';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs6;
         break;
       }
       case 8: {
-        valNum = 0;
-        this.subtitle = 'לשמור על החוקים';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs7;
         break;
       }
       case 9: {
-        valNum = 4;
-        this.subtitle = 'לשמור על המסורת';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs8;
         break;
       }
       case 10: {
-        valNum = 5;
-        this.subtitle = 'לעזור לאחרים';
-        audioString = `${valNum}`;
+        curVal = this.dataService.pbvs9;
         break;
       }
       case 11: {
-        valNum = 9;
-        this.subtitle = this.isMale
-          ? 'להיות חבר של ילדים מכל הסוגים'
-          : 'להיות חברה של ילדים מכל הסוגים';
-        audioString = `${valNum}-${this.isMale ? 'M' : 'F'}`;
+        curVal = this.dataService.pbvs10;
         break;
       }
       case 12: {
         return 0;
       }
     }
-    this.imgLink = `../../assets/values-ranking/values_img/val${valNum}.png`;
+    this.imgLink = `../../assets/values-ranking/values_img/${curVal.imgLink}`;
     this.audioService.setAudio(
-      `../../assets/values-ranking/values_aud/val${audioString}.wav`
+      `../../assets/values-ranking/values_aud/${curVal.audioLink}`
     );
+    this.subtitle = curVal.text;
     return 0;
   }
 
