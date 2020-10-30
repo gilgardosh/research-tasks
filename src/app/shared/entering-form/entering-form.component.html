@@ -42,13 +42,13 @@
                                 <td class="data-cell">
                                     <img src="../../../assets/images/boy.png">
                                     <br>
-                                    <mat-radio-button color="primary" class="selection" value="male"></mat-radio-button>
+                                    <mat-radio-button color="primary" class="selection" value="M"></mat-radio-button>
                                 </td>
                                 <td class="gap-cell"></td>
                                 <td class="data-cell">
                                     <img src="../../../assets/images/girl.png">
                                     <br>
-                                    <mat-radio-button color="primary" class="selection" value="female">
+                                    <mat-radio-button color="primary" class="selection" value="F">
                                     </mat-radio-button>
                                 </td>
                             </table>
@@ -58,7 +58,7 @@
             </table>
             <button mat-raised-button color="primary" (click)="start()">היכנסו למשחק</button>
             <p *ngIf="invalidSchoolIDFlag" style="color:red; font-weight: bold;">מספר בית הספר אינו מתאים</p>
-            <p *ngIf="invalidChildIDFlag" style="color:red; font-weight: bold;">מספר התאום/ה אינו מתאים</p>
+            <p *ngIf="invalidChildIDFlag" style="color:red; font-weight: bold;">מספר הילד אינו מתאים</p>
         </mat-card-content>
     </mat-card>
 </div>
