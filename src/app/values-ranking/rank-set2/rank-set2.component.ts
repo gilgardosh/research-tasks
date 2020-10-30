@@ -91,6 +91,7 @@ export class RankSet2Component implements OnInit, OnDestroy {
       this.playSound();
       val.isStock = false;
       this.orderedValues[this.valuesStages[this.stage - 2]] = val;
+      val.rank = this.getRank(this.valuesStages[this.stage - 2]);
       if (this.stage >= 7) {
         this.playerSubscription = this.audioService
           .getPlayerStatus()
@@ -186,7 +187,7 @@ export class RankSet2Component implements OnInit, OnDestroy {
         renkVal = 5;
         break;
       }
-      case 'vary1': {
+      case 'very1': {
       }
       case 'very2': {
         renkVal = 4;

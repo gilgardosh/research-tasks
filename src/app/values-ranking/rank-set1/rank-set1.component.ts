@@ -188,7 +188,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
         renkVal = 5;
         break;
       }
-      case 'vary1': {
+      case 'very1': {
       }
       case 'very2': {
         renkVal = 4;
