@@ -14,6 +14,7 @@ import { pbvs, valuesRankingData } from '../value-ranking.service';
   selector: 'app-rank-set1',
   templateUrl: './rank-set1.component.html',
   styleUrls: ['./rank-set1.component.scss'],
+  providers: [AudioService],
 })
 export class RankSet1Component implements OnInit, OnDestroy {
   @Output() gotRanking: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -60,12 +61,12 @@ export class RankSet1Component implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.playerSubscription) this.playerSubscription.unsubscribe;
+    if (this.playerSubscription) this.playerSubscription.unsubscribe();
   }
 
   stepback() {
     this.calculating = true;
-    if (this.playerSubscription) this.playerSubscription.unsubscribe;
+    if (this.playerSubscription) this.playerSubscription.unsubscribe();
     this.audioService.pauseAudio();
     this.stage -= 1;
     while (this.stage >= 7) {
@@ -86,7 +87,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
   valueClick(val: pbvs) {
     if (!this.calculating) {
       this.calculating = true;
-      if (this.playerSubscription) this.playerSubscription.unsubscribe;
+      if (this.playerSubscription) this.playerSubscription.unsubscribe();
       this.stage += 1;
       this.playSound();
       val.isStock = false;
@@ -107,6 +108,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
                 }
               }
               this.calculating = false;
+              return 0;
             }
           });
       } else {
