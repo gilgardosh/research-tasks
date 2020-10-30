@@ -9,9 +9,9 @@
 }
 
 .header {
-  margin: auto;
-  width: 100vw;
   height: 6vh;
+  width: 100vw;
+  margin: auto;
   background-color: lightcyan;
   padding: 10px;
 }
@@ -30,13 +30,13 @@
 }
 
 .stock-table {
-  width: 94vh;
-  height: 55vw;
+  height: 94vh;
+  width: 55vw;
 }
 
 .stock-row {
-  width: 55vw;
   height: 31vh;
+  width: 55vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -44,14 +44,14 @@
 }
 
 .stock-cell {
-  width: 13.5vw;
   height: 31vh;
+  width: 13.5vw;
   padding: 5px;
 }
 
 .stock-card {
-  width: 12.5vw;
   height: 29vh;
+  width: 12.5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,8 +61,8 @@
 }
 
 .stock-img {
-  width: 11vw;
   height: 20vh;
+  width: 11vw;
 }
 
 .pyramid-container {
@@ -93,6 +93,7 @@
 }
 
 .pyramid-square {
+  overflow: hidden;
   background: lightgray;
   width: 10.5vw;
   height: 17vh;
@@ -106,17 +107,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: start;
 }
 
 .pyramid-img {
-  width: 8vw;
-  max-height: 16vh;
+  max-width: 8vw;
+  max-height: 13vh;
+}
+
+.pyramid-text {
+  height: 13.5vh;
 }
 
 .button-cell {
-  width: 37%;
-  height: fill;
+  height: 18vh;
+  width: 17vw;
   display: flex;
   flex-direction: row;
   align-content: flex-end;
@@ -125,9 +130,9 @@
 }
 
 .button-cell2 {
+  height: 18vh;
+  width: 17vw;
   padding-left: 10px;
-  width: fill;
-  height: fill;
   display: flex;
   flex-direction: column;
   align-content: flex-end;
@@ -136,8 +141,8 @@
 }
 
 .accept-button {
-  width: fill;
-  height: fill;
+  width: 55vw;
+  height: 94vh;
   display: flex;
   flex-direction: column;
   align-content: center;
