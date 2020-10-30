@@ -1,39 +1,39 @@
 <div class="container">
     <div class="text-div">
         <h1 style="text-align: center;">
-            לא חשובים בכלל
-        </h1>
-    </div>
-    <div class="values-div">
-        <mat-card class="sum-card">
-            <img class="sum-img" [src]="notImg2">
-            <p>
-                {{data["rank-set2"].notnot.text}}
-            </p>
-        </mat-card>
-        <mat-card class="sum-card">
-            <img class="sum-img" [src]="notImg1">
-            <p>
-                {{data["rank-set1"].notnot.text}}
-            </p>
-        </mat-card>
-    </div>
-    <div class="text-div">
-        <h1 style="text-align: center;">
             הכי חשובים
         </h1>
     </div>
     <div class="values-div">
         <mat-card class="sum-card">
-            <img class="sum-img" [src]="veryImg2">
+            <img class="sum-img" [src]="'../../assets/values-ranking/values_img/'+very2.imgLink">
             <p>
-                {{data["rank-set2"].veryvery.text}}
+                {{very2.text}}
             </p>
         </mat-card>
         <mat-card class="sum-card">
-            <img class="sum-img" [src]="veryImg1">
+            <img class="sum-img" [src]="'../../assets/values-ranking/values_img/'+very1.imgLink">
             <p>
-                {{data["rank-set1"].veryvery.text}}
+                {{very1.text}}
+            </p>
+        </mat-card>
+    </div>
+    <div class="text-div" *ngIf="!randomView">
+        <h1 style="text-align: center;">
+            לא חשובים בכלל
+        </h1>
+    </div>
+    <div class="values-div" *ngIf="!randomView">
+        <mat-card class="sum-card">
+            <img class="sum-img" [src]="'../../assets/values-ranking/values_img/'+not2.imgLink">
+            <p>
+                {{not2.text}}
+            </p>
+        </mat-card>
+        <mat-card class="sum-card">
+            <img class="sum-img" [src]="'../../assets/values-ranking/values_img/'+not1.imgLink">
+            <p>
+                {{not1.text}}
             </p>
         </mat-card>
     </div>
