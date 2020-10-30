@@ -1,14 +1,14 @@
 <div class="containter">
-    <app-rank-set1 *ngIf="stage == 3" [isMale]="this.creds.gender === 'male'" (getRanking)=stage3($event)>
+    <app-rank-set1 *ngIf="stage == 3" [isMale]="this.creds.gender === 'M'" (getRanking)=stage3($event)>
     </app-rank-set1>
-    <app-rank-set2 *ngIf="stage == 5" [isMale]="this.creds.gender === 'male'" (getRanking)=stage5($event)>
+    <app-rank-set2 *ngIf="stage == 5" [isMale]="this.creds.gender === 'M'" (getRanking)=stage5($event)>
     </app-rank-set2>
     <app-summary *ngIf="stage == 6" [data]="this.mainData"></app-summary>
     <div class="padding" *ngIf="stage == 1 || stage == 2 || stage == 4">
         <app-entering-form *ngIf="stage == 1" (gotCreds)=stage1($event)></app-entering-form>
-        <app-values-set1 *ngIf="stage == 2" [isMale]="this.creds.gender === 'male'" (openingEnded)=stage2($event)>
+        <app-values-set1 *ngIf="stage == 2" [isMale]="this.creds.gender === 'M'" (openingEnded)=stage2($event)>
         </app-values-set1>
-        <app-values-set2 *ngIf="stage == 4" [isMale]="this.creds.gender === 'male'" (openingEnded)=stage4($event)>
+        <app-values-set2 *ngIf="stage == 4" [isMale]="this.creds.gender === 'M'" (openingEnded)=stage4($event)>
         </app-values-set2>
     </div>
 </div>
