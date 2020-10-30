@@ -213,12 +213,12 @@
                         </mat-card>
                     </td>
                     <td class="stock-cell">
-                        <mat-card class="stock-card" *ngIf="dataService.pbvs10.isStock"
-                            (click)="valueClick(dataService.pbvs10)">
+                        <mat-card class="stock-card" *ngIf="dataService.pbvs20.isStock"
+                            (click)="valueClick(dataService.pbvs20)">
                             <img class="stock-img"
-                                [src]="'../../assets/values-ranking/values_img/'+dataService.pbvs10.imgLink">
+                                [src]="'../../assets/values-ranking/values_img/'+dataService.pbvs20.imgLink">
                             <p>
-                                {{dataService.pbvs10.text}}
+                                {{dataService.pbvs20.text}}
                             </p>
                         </mat-card>
                     </td>
