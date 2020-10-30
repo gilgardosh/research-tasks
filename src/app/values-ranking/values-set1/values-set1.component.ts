@@ -6,6 +6,7 @@ import { pbvs, valuesRankingData } from '../value-ranking.service';
   selector: 'app-values-set1',
   templateUrl: './values-set1.component.html',
   styleUrls: ['./values-set1.component.scss'],
+  providers: [AudioService],
 })
 export class ValuesSet1Component implements OnInit {
   @Output() openingEnded: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -33,6 +34,7 @@ export class ValuesSet1Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.stage = 1;
     this.subtitle = `עכשיו אנחנו נצא למסע דמיוני -<br>
     מסע בדברים החשובים לך בחיים,<br>
     במטרות שלך ואיך תרצ${

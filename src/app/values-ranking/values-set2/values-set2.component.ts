@@ -6,14 +6,15 @@ import { pbvs, valuesRankingData } from '../value-ranking.service';
   selector: 'app-values-set2',
   templateUrl: './values-set2.component.html',
   styleUrls: ['./values-set2.component.scss'],
+  providers: [AudioService],
 })
 export class ValuesSet2Component implements OnInit {
   @Output() openingEnded: EventEmitter<boolean> = new EventEmitter<boolean>();
   subtitle: string;
   imgLink: string = null;
-  stage: number = 1;
+  vs2Stage: number = 1;
   /**
-   * stages:
+   * vs2Stages:
    * 1 - opening
    * 2 - val12
    * 3 - val10
@@ -33,6 +34,7 @@ export class ValuesSet2Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.vs2Stage = 1;
     this.subtitle = `כל הכבוד!<br>עכשיו נשחק שוב את המשחק עם תמונות אחרות.<br>נעבור על התמונות אחת - אחת`;
     this.audioService.setAudio(
       `../../assets/values-ranking/values_aud/opening2-${this.dataService.gender}.wav`
@@ -44,7 +46,7 @@ export class ValuesSet2Component implements OnInit {
 
     this.audioService.getPlayerStatus().subscribe((res) => {
       if (res == 'ended') {
-        this.stage += 1;
+        this.vs2Stage += 1;
         this.introduceValues();
       }
     });
@@ -52,7 +54,7 @@ export class ValuesSet2Component implements OnInit {
 
   introduceValues() {
     let curVal: pbvs;
-    switch (this.stage) {
+    switch (this.vs2Stage) {
       case 2: {
         curVal = this.dataService.pbvs11;
         break;
