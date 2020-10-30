@@ -30,7 +30,7 @@ export class ValuesRankingComponent implements OnInit {
     this.dataService.schoolID = creds.schoolID;
     this.dataService.childID = creds.childID;
     this.dataService.setGender(creds.gender);
-    this.scene = 3;
+    this.scene = 2;
   }
 
   scene2(endFlag: boolean) {
@@ -51,11 +51,11 @@ export class ValuesRankingComponent implements OnInit {
     }
   }
 
-  scene5(ranking2Data: any) {
-    this.calculateData();
-    this.scene = 6;
+  scene5(endFlag: boolean) {
+    if (endFlag) {
+      this.scene = 6;
+    }
   }
-
   calculateData() {
     let finalData = {};
     console.log(finalData);

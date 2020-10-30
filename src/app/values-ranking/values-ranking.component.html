@@ -1,7 +1,7 @@
 <div class="containter">
     <app-rank-set1 *ngIf="scene == 3" (gotRanking)=scene3($event)>
     </app-rank-set1>
-    <app-rank-set2 *ngIf="scene == 5" [isMale]="this.creds.gender === 'M'" (getRanking)=scene5($event)>
+    <app-rank-set2 *ngIf="scene == 5" (gotRanking)=scene5($event)>
     </app-rank-set2>
     <app-summary *ngIf="scene == 6"></app-summary>
     <div class="padding" *ngIf="scene == 1 || scene == 2 || scene == 4">
