@@ -12,6 +12,7 @@ import { RankSet1Component } from './values-ranking/rank-set1/rank-set1.componen
 import { ValuesSet2Component } from './values-ranking/values-set2/values-set2.component';
 import { RankSet2Component } from './values-ranking/rank-set2/rank-set2.component';
 import { SummaryComponent } from './values-ranking/summary/summary.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { SummaryComponent } from './values-ranking/summary/summary.component';
     RankSet2Component,
     SummaryComponent,
   ],
-  imports: [BrowserModule, SharedModule, AppRoutingModule],
+  imports: [BrowserModule, SharedModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
