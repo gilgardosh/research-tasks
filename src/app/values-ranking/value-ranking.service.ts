@@ -1,4 +1,5 @@
 export class valuesRankingData {
+  dataSavedFlag: boolean = false;
   schoolID: string;
   childID: string;
   gender: 'M' | 'F' = 'M';

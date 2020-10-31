@@ -1,4 +1,23 @@
 <div class="container">
+    <div class="text-div" *ngIf="randomView">
+        <h1 style="text-align: center;">
+            לא חשובים בכלל
+        </h1>
+    </div>
+    <div class="values-div" *ngIf="randomView">
+        <mat-card class="sum-card">
+            <img class="sum-img" [src]="'../../assets/values-ranking/values_img/'+not2.imgLink">
+            <p>
+                {{not2.text}}
+            </p>
+        </mat-card>
+        <mat-card class="sum-card">
+            <img class="sum-img" [src]="'../../assets/values-ranking/values_img/'+not1.imgLink">
+            <p>
+                {{not1.text}}
+            </p>
+        </mat-card>
+    </div>
     <div class="text-div">
         <h1 style="text-align: center;">
             הכי חשובים
@@ -36,5 +55,8 @@
                 {{not1.text}}
             </p>
         </mat-card>
+    </div>
+    <div class="data-saved" *ngIf="dataService.dataSavedFlag">
+        <p style="color: green">המידע נקלט. תודה!</p>
     </div>
 </div>
