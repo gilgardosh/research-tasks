@@ -5,7 +5,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AudioService } from 'src/app/shared/services/audio.service';
 import { pbvs, valuesRankingData } from '../value-ranking.service';
 
@@ -22,6 +22,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
   stage: number = 1;
   calculating: boolean = false;
   playerSubscription: Subscription;
+  playerworking: Subscription;
 
   orderedValues = {
     veryvery: null,
@@ -57,10 +58,20 @@ export class RankSet1Component implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isMale = this.dataService.gender === 'M';
     this.playSound();
+    this.playerworking = this.audioService
+      .getPlayerStatus()
+      .subscribe((res) => {
+        if (res != 'ended') {
+          this.calculating = true;
+        } else {
+          this.calculating = false;
+        }
+      });
   }
 
   ngOnDestroy(): void {
     if (this.playerSubscription) this.playerSubscription.unsubscribe();
+    if (this.playerworking) this.playerworking.unsubscribe();
   }
 
   stepback() {
@@ -93,9 +104,10 @@ export class RankSet1Component implements OnInit, OnDestroy {
       this.orderedValues[this.valuesStages[this.stage - 2]] = val;
       val.rank = this.getRank(this.valuesStages[this.stage - 2]);
       if (this.stage >= 7) {
-        this.playerSubscription = this.audioService
-          .getPlayerStatus()
-          .subscribe((res) => {
+        const subscription = this.audioService.getPlayerStatus();
+        // inner delated func
+        const stage7 = () => {
+          subscription.subscribe((res) => {
             if (res == 'ended') {
               for (let i = 1; i <= 10; i++) {
                 if (this.dataService['pbvs' + i].isStock) {
@@ -107,9 +119,10 @@ export class RankSet1Component implements OnInit, OnDestroy {
                 }
               }
               this.calculating = false;
-              return 0;
             }
           });
+        };
+        setTimeout(stage7, 1000);
       } else {
         this.calculating = false;
       }

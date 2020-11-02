@@ -93,9 +93,10 @@ export class RankSet2Component implements OnInit, OnDestroy {
       this.orderedValues[this.valuesStages[this.stage - 2]] = val;
       val.rank = this.getRank(this.valuesStages[this.stage - 2]);
       if (this.stage >= 7) {
-        this.playerSubscription = this.audioService
-          .getPlayerStatus()
-          .subscribe((res) => {
+        const subscription = this.audioService.getPlayerStatus();
+        // inner delated func
+        const stage7 = () => {
+          subscription.subscribe((res) => {
             if (res == 'ended') {
               for (let i = 11; i <= 20; i++) {
                 if (this.dataService['pbvs' + i].isStock) {
@@ -109,6 +110,8 @@ export class RankSet2Component implements OnInit, OnDestroy {
               this.calculating = false;
             }
           });
+        };
+        setTimeout(stage7, 1000);
       } else {
         this.calculating = false;
       }
