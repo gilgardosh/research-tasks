@@ -34,7 +34,7 @@ export class ValuesRankingComponent implements OnInit {
     this.dataService.schoolID = creds.schoolID;
     this.dataService.childID = creds.childID;
     this.dataService.setGender(creds.gender);
-    this.scene = 5;
+    this.scene = 2;
   }
 
   scene2(endFlag: boolean) {
