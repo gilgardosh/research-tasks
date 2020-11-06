@@ -34,37 +34,17 @@ export class StickersComponent implements OnInit {
     },
     {
       option1: {
-        me: 0,
-        other: 2,
-      },
-      option2: {
-        me: 1,
-        other: 1,
-      },
-    },
-    {
-      option1: {
-        me: 1,
-        other: 1,
-      },
-      option2: {
-        me: 0,
-        other: 1,
-      },
-    },
-    {
-      option1: {
-        me: 1,
+        me: 2,
         other: 0,
       },
       option2: {
-        me: 0,
-        other: 0,
+        me: 1,
+        other: 1,
       },
     },
     {
       option1: {
-        me: 0,
+        me: 1,
         other: 1,
       },
       option2: {
@@ -75,7 +55,27 @@ export class StickersComponent implements OnInit {
     {
       option1: {
         me: 0,
-        other: 3,
+        other: 1,
+      },
+      option2: {
+        me: 0,
+        other: 0,
+      },
+    },
+    {
+      option1: {
+        me: 0,
+        other: 1,
+      },
+      option2: {
+        me: 1,
+        other: 0,
+      },
+    },
+    {
+      option1: {
+        me: 3,
+        other: 0,
       },
       option2: {
         me: 2,
@@ -84,16 +84,27 @@ export class StickersComponent implements OnInit {
     },
     {
       option1: {
-        me: 2,
-        other: 0,
+        me: 0,
+        other: 2,
       },
       option2: {
-        me: 0,
-        other: 1,
+        me: 1,
+        other: 0,
       },
     },
   ];
   curBoard: boardStickers;
+
+  /*
+   * stages:
+   * 0 - opening
+   * 1 - board 1
+   * 2 - board 2
+   * 3 - board 3
+   * 4 - board 4
+   * 5 - board 5
+   * 6 - board 6
+   */
 
   constructor(
     private audioService: AudioService,
@@ -108,7 +119,6 @@ export class StickersComponent implements OnInit {
     this.stage = 0;
     this.calculatingFlag = true;
     this.isMale = this.dataService.gender === 'M';
-    this.stage = 1;
     this.title = `עכשיו, נעשה פעילות עם נקודות. זו פעילות מאד נחמדה ופשוטה.
     <br>אני רוצה להראות לך את שני הדפים האלה. לכל דף יש חצי אחד כחול, וחצי אחד צהוב.`;
     this.childImgLink = `../../assets/stickers/child-${this.dataService.gender}.jpg`;
@@ -171,7 +181,7 @@ export class StickersComponent implements OnInit {
   prevStage() {
     this.calculatingFlag = true;
     this.$audioSubscription2.unsubscribe();
-    if (this.stage >= 1) {
+    if (this.stage >= 2) {
       this.stage -= 1;
       this.curBoard = this.boards[this.stage];
     }
@@ -292,7 +302,7 @@ export class StickersComponent implements OnInit {
       }
       case 4: {
         this.title = this.isMale
-          ? 'מה אתה בוחר/, אחת לך וכלום לילד האחר, או כלום לך ואחת לילד האחר?'
+          ? 'מה אתה בוחר, אחת לך וכלום לילד האחר, או כלום לך ואחת לילד האחר?'
           : 'מה את בוחרת, אחת לך וכלום לילדה האחרת, או כלום לך ואחת לילדה האחרת?';
         this.audioService.setAudio(
           `../../assets/stickers/sticker4-${this.isMale ? 'M' : 'F'}.m4a`
@@ -301,7 +311,7 @@ export class StickersComponent implements OnInit {
       }
       case 5: {
         this.title = this.isMale
-          ? 'מה אתה בוחר/, שלוש לך וכלום לילד האחר, או שתיים לך ושתיים לילד האחר?'
+          ? 'מה אתה בוחר, שלוש לך וכלום לילד האחר, או שתיים לך ושתיים לילד האחר?'
           : 'מה את בוחרת, שלוש לך וכלום לילדה האחרת, או שתיים לך ושתיים לילדה האחרת?';
         this.audioService.setAudio(
           `../../assets/stickers/sticker5-${this.isMale ? 'M' : 'F'}.m4a`
@@ -309,7 +319,7 @@ export class StickersComponent implements OnInit {
       }
       case 6: {
         this.title = this.isMale
-          ? 'מה אתה בוחר/, כלום לך ושתיים לילד האחר, או אחת לך וכלום לילד האחר?'
+          ? 'מה אתה בוחר, כלום לך ושתיים לילד האחר, או אחת לך וכלום לילד האחר?'
           : 'מה את בוחרת, כלום לך ושתיים לילדה האחרת, או אחת לך וכלום לילדה האחרת?';
         this.audioService.setAudio(
           `../../assets/stickers/sticker6-${this.isMale ? 'M' : 'F'}.m4a`
