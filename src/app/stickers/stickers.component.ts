@@ -67,12 +67,12 @@ export class StickersComponent implements OnInit {
     },
     {
       option1: {
-        me: 0,
-        other: 1,
-      },
-      option2: {
         me: 1,
         other: 0,
+      },
+      option2: {
+        me: 0,
+        other: 1,
       },
     },
     {
