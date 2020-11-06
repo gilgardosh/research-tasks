@@ -1,0 +1,58 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.header {
+  height: 10vh;
+  width: 100vw;
+  margin: auto;
+  background-color: lightcyan;
+  padding: 10px;
+}
+
+.boards {
+  height: 80vh;
+  width: 100vw;
+}
+
+.bank {
+  height: 10vh;
+  width: 100vw;
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+}
+
+.bank-title {
+  height: 10vh;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.bank-coin {
+  height: 10vh;
+  width: 10vh;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.coin {
+  height: 80%;
+  width: 80%;
+  margin: 5px;
+  box-shadow: 2px 2px 4px #000000;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+}
