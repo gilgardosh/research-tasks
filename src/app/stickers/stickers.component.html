@@ -1,3 +1,6 @@
+<div class="form" *ngIf="!formFlag">
+    <app-entering-form (gotCreds)=getCreds($event)></app-entering-form>
+</div>
 <div class="containter" *ngIf="formFlag && stage < 7">
     <div class="header">
         <h1 [innerHTML]="title" style="text-align: center;"></h1>
@@ -56,4 +59,3 @@
 <div *ngIf="this.stage >= 7">
     Todo: handle app end
 </div>
-<app-entering-form *ngIf="!formFlag" (gotCreds)=getCreds($event)></app-entering-form>

@@ -1,3 +1,10 @@
+.form {
+  width: 100vw;
+  height: 100vh;
+  padding: 5vh;
+  background-color: skyblue;
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -5,6 +12,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-content: flex-start;
+  background-color: white;
 }
 
 .header {
