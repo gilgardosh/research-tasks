@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { credentials } from '../models';
 import { AudioService } from '../shared/services/audio.service';
 import { DataService } from '../shared/services/data.service';
 
@@ -18,6 +19,8 @@ export class StickersComponent implements OnInit {
   showBoardsFlag: boolean = false;
   showLargeChildFlag: boolean = false;
   showSmallChildFlag: boolean = false;
+  finnishFlag: boolean = false;
+  formFlag: boolean = false;
   calculatingFlag: boolean;
   myPointsList: number[];
   myPoints: number;
@@ -118,6 +121,20 @@ export class StickersComponent implements OnInit {
   ngOnInit(): void {
     this.stage = 0;
     this.calculatingFlag = true;
+  }
+
+  ngOnDestroy(): void {
+    this.$audioSubscription1.unsubscribe();
+    this.$audioSubscription2.unsubscribe();
+  }
+
+  getCreds(creds: credentials) {
+    this.dataService.schoolID = creds.schoolID;
+    this.dataService.childID = creds.childID;
+    this.dataService.setGender(creds.gender);
+    this.formFlag = true;
+
+    // init stage:
     this.isMale = this.dataService.gender === 'M';
     this.title = `עכשיו, נעשה פעילות עם נקודות. זו פעילות מאד נחמדה ופשוטה.
     <br>אני רוצה להראות לך את שני הדפים האלה. לכל דף יש חצי אחד כחול, וחצי אחד צהוב.`;
@@ -148,11 +165,6 @@ export class StickersComponent implements OnInit {
       });
   }
 
-  ngOnDestroy(): void {
-    this.$audioSubscription1.unsubscribe();
-    this.$audioSubscription2.unsubscribe();
-  }
-
   boardSelect(points: number) {
     if (!this.calculatingFlag) {
       this.myPointsList.push(points);
@@ -164,6 +176,9 @@ export class StickersComponent implements OnInit {
     this.calculatingFlag = true;
     this.$audioSubscription2.unsubscribe();
     this.stage += 1;
+    if (this.stage >= 7) {
+      return 0;
+    }
     this.calculatePoints();
     this.playSound();
     this.curBoard = this.boards[this.stage];
@@ -185,6 +200,7 @@ export class StickersComponent implements OnInit {
       this.stage -= 1;
       this.curBoard = this.boards[this.stage];
     }
+    this.myPointsList.length = this.stage - 1;
     this.calculatePoints();
     this.playSound();
     setTimeout(() => {
@@ -195,7 +211,6 @@ export class StickersComponent implements OnInit {
             this.calculatingFlag = false;
           }
         });
-      this.myPointsList.length = this.stage;
     }, 1000);
   }
 
