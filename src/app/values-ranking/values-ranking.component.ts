@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { credentials } from '../models';
-import { valuesRankingData } from './value-ranking.service';
+import { DataService } from '../shared/services/data.service';
 
 @Component({
   selector: 'app-values-ranking',
   templateUrl: './values-ranking.component.html',
   styleUrls: ['./values-ranking.component.scss'],
-  providers: [valuesRankingData],
 })
 export class ValuesRankingComponent implements OnInit {
   /**
@@ -23,10 +22,7 @@ export class ValuesRankingComponent implements OnInit {
   scene: number = 1;
   creds: credentials;
 
-  constructor(
-    private dataService: valuesRankingData,
-    private http: HttpClient
-  ) {}
+  constructor(private dataService: DataService, private http: HttpClient) {}
 
   ngOnInit(): void {}
 

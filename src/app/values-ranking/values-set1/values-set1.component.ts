@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AudioService } from 'src/app/shared/services/audio.service';
-import { pbvs, valuesRankingData } from '../value-ranking.service';
+import { pbvs, DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-values-set1',
@@ -30,7 +30,7 @@ export class ValuesSet1Component implements OnInit {
 
   constructor(
     private audioService: AudioService,
-    public dataService: valuesRankingData
+    public dataService: DataService
   ) {}
 
   ngOnInit(): void {

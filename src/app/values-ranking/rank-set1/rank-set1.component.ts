@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { AudioService } from 'src/app/shared/services/audio.service';
-import { pbvs, valuesRankingData } from '../value-ranking.service';
+import { pbvs, DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-rank-set1',
@@ -52,7 +52,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
 
   constructor(
     private audioService: AudioService,
-    public dataService: valuesRankingData
+    public dataService: DataService
   ) {}
 
   ngOnInit(): void {

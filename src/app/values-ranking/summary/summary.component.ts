@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AudioService } from 'src/app/shared/services/audio.service';
-import { valuesRankingData } from '../value-ranking.service';
+import { DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-summary',
@@ -21,7 +21,7 @@ export class SummaryComponent implements OnInit {
 
   constructor(
     private audioService: AudioService,
-    public dataService: valuesRankingData
+    public dataService: DataService
   ) {
     this.randomView = Math.random() > 0.5;
     for (let i = 1; i <= 10; i++) {
