@@ -1,13 +1,55 @@
 <div class="containter">
     <div class="header">
-        <h1 style="text-align: center;">{{title}}</h1>
+        <h1 [innerHTML]="title" style="text-align: center;"></h1>
     </div>
-    <div class="boards"></div>
-    <div class="bank">
-        <div class="bank-title">
-            <h1 style="text-align: center;">מדבקות שצברתי:</h1>
+    <div class="boards" *ngIf="showBoardsFlag">
+        <div class="board-container">
+            <div class="board" (click)="boardSelect(curBoard.option1.me)">
+                <div class="board-side yellow">
+                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option1.other)">
+                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+                    </div>
+                </div>
+                <div class="board-side blue">
+                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option1.me)">
+                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
-        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+        <div class="child-large" *ngIf="showLargeChildFlag">
+            <img class="child-large-img" [src]="childImgLink">
+        </div>
+        <div class="child-small" *ngIf="showSmallChildFlag">
+            <img class="child-small-img" [src]="childImgLink">
+        </div>
+        <div class="board-container">
+            <div class="board" (click)="boardSelect(curBoard.option2.me)">
+                <div class="board-side yellow">
+                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option2.other)">
+                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+                    </div>
+                </div>
+                <div class="board-side blue">
+                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option2.me)">
+                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bank" *ngIf="showSmallChildFlag">
+        <div class="bank-title">
+            <h1 style="text-align: center;">נקודות שצברתי:</h1>
+        </div>
+        <div class="bank-coin" *ngFor="let coin of [].constructor(myPoints)">
+            <img class="coin" src="../../assets/images/sticker.png">
+        </div>
+        <div class="gap"></div>
+        <div class="button">
+            <button mat-raised-button color="primary" (click)="prevStage()" [disabled]="calculatingFlag">
+                צעד אחורה
+            </button>
+        </div>
     </div>
 </div>

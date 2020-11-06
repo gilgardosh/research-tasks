@@ -11,19 +11,101 @@
   height: 10vh;
   width: 100vw;
   margin: auto;
-  background-color: lightcyan;
+  background-color: skyblue;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 .boards {
   height: 80vh;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-around;
+}
+
+.child-large {
+  height: 80vh;
+  width: 40vw;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.child-small {
+  height: 80vh;
+  width: 10vw;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.child-large-img {
+  width: 38vw;
+  max-width: 38vw;
+  height: 50vw;
+  max-height: 50vw;
+}
+
+.child-small-img {
+  width: 10vw;
+  max-width: 10vw;
+  height: 14vw;
+  max-height: 14vw;
+}
+
+.board-container {
+  height: 80vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.board {
+  cursor: pointer;
+}
+
+.board-side {
+  height: 30vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.board-coin {
+  height: 30vh;
+  width: 10vh;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 .bank {
   height: 10vh;
   width: 100vw;
-  background-color: green;
+  background-color: skyblue;
   display: flex;
   flex-direction: row;
 }
@@ -48,11 +130,24 @@
 }
 
 .coin {
-  height: 80%;
-  width: 80%;
+  height: 8vh;
+  width: 8vh;
   margin: 5px;
   box-shadow: 2px 2px 4px #000000;
   background-color: white;
   border-radius: 50%;
   display: inline-block;
+}
+
+.gap {
+  flex-grow: 4;
+}
+
+.button {
+  height: 10vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
