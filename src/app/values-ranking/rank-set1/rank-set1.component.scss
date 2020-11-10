@@ -9,7 +9,7 @@
 }
 
 .header {
-  height: 6vh;
+  height: 10vh;
   width: 100vw;
   margin: auto;
   background-color: lightcyan;
@@ -17,25 +17,25 @@
 }
 
 .values-container {
-  height: 94vh;
+  height: 90vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
 }
 
 .stock-container {
-  height: 94vh;
+  height: 90vh;
   width: 55vw;
   background-color: rgb(228, 204, 241);
 }
 
 .stock-table {
-  height: 94vh;
+  height: 90vh;
   width: 55vw;
 }
 
 .stock-row {
-  height: 31vh;
+  height: 29vh;
   width: 55vw;
   display: flex;
   flex-direction: row;
@@ -44,13 +44,13 @@
 }
 
 .stock-cell {
-  height: 31vh;
+  height: 29vh;
   width: 13.5vw;
   padding: 5px;
 }
 
 .stock-card {
-  height: 29vh;
+  height: 27vh;
   width: 12.5vw;
   display: flex;
   flex-direction: column;
@@ -61,23 +61,23 @@
 }
 
 .stock-img {
-  height: 20vh;
+  height: 18vh;
   width: 11vw;
 }
 
 .pyramid-container {
-  height: 94vh;
+  height: 90vh;
   width: 45vw;
   background-color: skyblue;
 }
 
 .pyramid-table {
-  height: 94vh;
+  height: 90vh;
   width: 45vw;
 }
 
 .pyramid-row {
-  height: 18vh;
+  height: 16vh;
   width: 45vw;
   min-height: max-content;
   display: flex;
@@ -87,7 +87,7 @@
 }
 
 .pyramid-cell {
-  height: 18vh;
+  height: 16vh;
   width: 11vw;
   padding: 5px;
 }
@@ -96,14 +96,14 @@
   overflow: hidden;
   background: lightgray;
   width: 10.5vw;
-  height: 17vh;
+  height: 15vh;
   outline: 4px solid black;
   padding: 3px;
 }
 
 .pyramid-cell-data {
   width: 10.5vw;
-  height: 16.5vh;
+  height: 14.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,15 +112,15 @@
 
 .pyramid-img {
   max-width: 8vw;
-  max-height: 13vh;
+  max-height: 11vh;
 }
 
 .pyramid-text {
-  height: 13.5vh;
+  height: 11.5vh;
 }
 
 .button-cell {
-  height: 18vh;
+  height: 16vh;
   width: 17vw;
   display: flex;
   flex-direction: row;
@@ -130,7 +130,7 @@
 }
 
 .button-cell2 {
-  height: 18vh;
+  height: 16vh;
   width: 17vw;
   padding-left: 10px;
   display: flex;
@@ -142,7 +142,7 @@
 
 .accept-button {
   width: 55vw;
-  height: 94vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-content: center;
