@@ -70,34 +70,38 @@ export class RankSet1Component implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.playerSubscription) this.playerSubscription.unsubscribe();
-    if (this.playerworking) this.playerworking.unsubscribe();
+    this.unsubscribe(this.playerSubscription);
+    this.unsubscribe(this.playerworking);
+  }
+
+  unsubscribe(sub: Subscription) {
+    if (sub) sub.unsubscribe();
   }
 
   stepback() {
     this.calculating = true;
-    if (this.playerSubscription) this.playerSubscription.unsubscribe();
+    this.unsubscribe(this.playerSubscription);
     this.audioService.pauseAudio();
     this.stage -= 1;
     while (this.stage >= 7) {
-      this.orderedValues[this.valuesStages[this.stage - 1]].isStock = true;
-      this.orderedValues[this.valuesStages[this.stage - 1]].rank = null;
-      this.orderedValues[this.valuesStages[this.stage - 1]] = null;
       this.stage -= 1;
+      this.orderedValues[this.valuesStages[this.stage]].isStock = true;
+      this.orderedValues[this.valuesStages[this.stage]].rank = null;
+      this.orderedValues[this.valuesStages[this.stage]] = null;
     }
     if (this.stage >= 1) {
       this.orderedValues[this.valuesStages[this.stage - 1]].isStock = true;
       this.orderedValues[this.valuesStages[this.stage - 1]].rank = null;
       this.orderedValues[this.valuesStages[this.stage - 1]] = null;
+      this.playSound();
     }
-    this.playSound();
     this.calculating = false;
   }
 
   valueClick(val: pbvs) {
     if (!this.calculating) {
       this.calculating = true;
-      if (this.playerSubscription) this.playerSubscription.unsubscribe();
+      this.unsubscribe(this.playerSubscription);
       this.stage += 1;
       this.playSound();
       val.isStock = false;
@@ -107,7 +111,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
         const subscription = this.audioService.getPlayerStatus();
         // inner delated func
         const stage7 = () => {
-          subscription.subscribe((res) => {
+          this.playerSubscription = subscription.subscribe((res) => {
             if (res == 'ended') {
               for (let i = 1; i <= 10; i++) {
                 if (this.dataService['pbvs' + i].isStock) {

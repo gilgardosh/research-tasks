@@ -96,7 +96,7 @@ export class RankSet2Component implements OnInit, OnDestroy {
         const subscription = this.audioService.getPlayerStatus();
         // inner delated func
         const stage7 = () => {
-          subscription.subscribe((res) => {
+          this.playerSubscription = subscription.subscribe((res) => {
             if (res == 'ended') {
               for (let i = 11; i <= 20; i++) {
                 if (this.dataService['pbvs' + i].isStock) {

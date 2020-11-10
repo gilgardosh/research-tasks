@@ -142,7 +142,8 @@
                     </td>
                     <td class="button-cell">
                         <div class="button-cell2">
-                            <button mat-raised-button color="warn" (click)="stepback()" [disabled]="calculating">
+                            <button mat-raised-button color="warn" (click)="stepback()"
+                                [disabled]="calculating || stage < 2">
                                 צעד אחורה
                             </button>
                         </div>
