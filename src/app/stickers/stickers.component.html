@@ -7,7 +7,7 @@
     </div>
     <div class="boards" *ngIf="showBoardsFlag">
         <div class="board-container">
-            <div class="board" (click)="boardSelect(curBoard.option1.me)">
+            <div class="board" (click)="boardSelect(curBoard.option1.me, 0)">
                 <div class="board-side yellow">
                     <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option1.other)">
                         <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
@@ -27,7 +27,7 @@
             <img class="child-small-img" [src]="childImgLink">
         </div>
         <div class="board-container">
-            <div class="board" (click)="boardSelect(curBoard.option2.me)">
+            <div class="board" (click)="boardSelect(curBoard.option2.me, 1)">
                 <div class="board-side yellow">
                     <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option2.other)">
                         <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>

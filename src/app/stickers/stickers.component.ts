@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { credentials } from '../models';
 import { AudioService } from '../shared/services/audio.service';
 import { DataService } from '../shared/services/data.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-stickers',
@@ -97,6 +98,29 @@ export class StickersComponent implements OnInit {
     },
   ];
   curBoard: boardStickers;
+  finalData: {
+    schoolID?: string;
+    childID?: string;
+    gender?: 'M' | 'F';
+    board1?: number;
+    board1Start?: Date;
+    board1Time?: number;
+    board2?: number;
+    board2Start?: Date;
+    board2Time?: number;
+    board3?: number;
+    board3Start?: Date;
+    board3Time?: number;
+    board4?: number;
+    board4Start?: Date;
+    board4Time?: number;
+    board5?: number;
+    board5Start?: Date;
+    board5Time?: number;
+    board6?: number;
+    board6Start?: Date;
+    board6Time?: number;
+  } = {};
 
   /*
    * stages:
@@ -111,7 +135,8 @@ export class StickersComponent implements OnInit {
 
   constructor(
     private audioService: AudioService,
-    public dataService: DataService
+    public dataService: DataService,
+    private http: HttpClient
   ) {
     this.curBoard = this.boards[0];
     this.myPointsList = [];
@@ -165,8 +190,47 @@ export class StickersComponent implements OnInit {
       });
   }
 
-  boardSelect(points: number) {
+  boardSelect(points: number, selected: number) {
     if (!this.calculatingFlag) {
+      const now = new Date();
+      switch (this.stage) {
+        case 1: {
+          this.finalData.board1 = selected;
+          this.finalData.board1 =
+            now.getTime() - this.finalData.board1Start?.getTime();
+          break;
+        }
+        case 2: {
+          this.finalData.board2 = selected;
+          this.finalData.board2 =
+            now.getTime() - this.finalData.board2Start?.getTime();
+          break;
+        }
+        case 3: {
+          this.finalData.board3 = selected;
+          this.finalData.board3 =
+            now.getTime() - this.finalData.board3Start?.getTime();
+          break;
+        }
+        case 4: {
+          this.finalData.board4 = selected;
+          this.finalData.board4 =
+            now.getTime() - this.finalData.board4Start?.getTime();
+          break;
+        }
+        case 5: {
+          this.finalData.board5 = selected;
+          this.finalData.board5 =
+            now.getTime() - this.finalData.board5Start?.getTime();
+          break;
+        }
+        case 6: {
+          this.finalData.board6 = selected;
+          this.finalData.board6 =
+            now.getTime() - this.finalData.board6Start?.getTime();
+          break;
+        }
+      }
       this.myPointsList.push(points);
       this.nextStage();
     }
@@ -296,6 +360,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker1-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        this.finalData.board1Start = new Date();
         return 0;
       }
       case 2: {
@@ -305,6 +370,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker2-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        this.finalData.board2Start = new Date();
         return 0;
       }
       case 3: {
@@ -314,6 +380,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker3-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        this.finalData.board3Start = new Date();
         return 0;
       }
       case 4: {
@@ -323,6 +390,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker4-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        this.finalData.board4Start = new Date();
         return 0;
       }
       case 5: {
@@ -332,6 +400,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker5-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        this.finalData.board5Start = new Date();
         return 0;
       }
       case 6: {
@@ -341,12 +410,69 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker6-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        this.finalData.board6Start = new Date();
         return 0;
       }
       default: {
         return 0;
       }
     }
+  }
+
+  calculateData() {
+    this.finalData.schoolID = this.dataService.schoolID;
+    this.finalData.childID = this.dataService.childID;
+    this.finalData.gender = this.dataService.gender;
+    const reqBody = {
+      query: `mutation insertData {
+        insert_stickers_one(
+          object: {
+            school_id: "${this.finalData.schoolID}",
+            child_id: "${this.finalData.childID}",
+            gender: "${this.finalData.gender}",
+            board_1: ${this.finalData.board1},
+            board_1_time: ${this.finalData.board1Time},
+            board_2: ${this.finalData.board2},
+            board_2_time: ${this.finalData.board2Time},
+            board_3: ${this.finalData.board3},
+            board_3_time: ${this.finalData.board3Time},
+            board_4: ${this.finalData.board4},
+            board_4_time: ${this.finalData.board4Time},
+            board_5: ${this.finalData.board5},
+            board_5_time: ${this.finalData.board5Time},
+            board_6: ${this.finalData.board6},
+            board_6_time: ${this.finalData.board6Time},
+          }
+        ) {
+          id,
+          init_time
+        }
+      }`,
+    };
+    const headers = { 'X-Hasura-Role': 'app' };
+    console.log('Data summary:', this.finalData);
+    this.http
+      .post<any>('https://research-tasks.hasura.app/v1/graphql', reqBody, {
+        headers,
+      })
+      .subscribe({
+        next: (data) => {
+          if (!!data.data?.insert_stickers_one) {
+            this.dataService.dataSavedFlag = true;
+            const res = data.data.insert_stickers_one;
+            console.log(`Input saved under ID ${res.id} on ${res.init_time}`);
+          } else {
+            console.error('Error saving task data!');
+            if (!!data.data?.errors) {
+              console.error(data.data.errors);
+            }
+          }
+        },
+        error: (e) => {
+          console.error('Error saving task data!');
+          console.error(e);
+        },
+      });
   }
 }
 
