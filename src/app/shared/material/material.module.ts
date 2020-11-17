@@ -64,7 +64,7 @@ import {
  */
 @NgModule({
   exports: [
-    // CDK
+    /* CDK */
     A11yModule,
     BidiModule,
     ObserversModule,
@@ -75,7 +75,7 @@ import {
     CdkTableModule,
     CdkTreeModule,
     DragDropModule,
-    // Material
+    /* Material */
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatBadgeModule,
@@ -113,7 +113,7 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    // Bootstrap
+    /* Bootstrap */
     NgbCollapseModule,
     NgbDatepickerModule,
     NgbModule,
