@@ -314,6 +314,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker3-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        return 0;
       }
       case 4: {
         this.title = this.isMale
@@ -331,6 +332,7 @@ export class StickersComponent implements OnInit {
         this.audioService.setAudio(
           `../../assets/stickers/sticker5-${this.isMale ? 'M' : 'F'}.m4a`
         );
+        return 0;
       }
       case 6: {
         this.title = this.isMale
