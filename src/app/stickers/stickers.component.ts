@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { credentials } from '../models';
 import { AudioService } from '../shared/services/audio.service';
-import { DataService } from '../shared/services/data.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -133,11 +132,7 @@ export class StickersComponent implements OnInit {
    * 6 - board 6
    */
 
-  constructor(
-    private audioService: AudioService,
-    public dataService: DataService,
-    private http: HttpClient
-  ) {
+  constructor(private audioService: AudioService, private http: HttpClient) {
     this.curBoard = this.boards[0];
     this.myPointsList = [];
     this.myPoints = 0;
@@ -154,24 +149,24 @@ export class StickersComponent implements OnInit {
   }
 
   getCreds(creds: credentials) {
-    this.dataService.schoolID = creds.schoolID;
-    this.dataService.childID = creds.childID;
-    this.dataService.setGender(creds.gender);
+    this.finalData.schoolID = creds.schoolID;
+    this.finalData.childID = creds.childID;
+    this.finalData.gender = creds.gender;
     this.formFlag = true;
 
     // init stage:
-    this.isMale = this.dataService.gender === 'M';
+    this.isMale = this.finalData.gender === 'M';
     this.title = `עכשיו, נעשה פעילות עם נקודות. זו פעילות מאד נחמדה ופשוטה.
     <br>אני רוצה להראות לך את שני הדפים האלה. לכל דף יש חצי אחד כחול, וחצי אחד צהוב.`;
-    this.childImgLink = `../../assets/stickers/child-${this.dataService.gender}.jpg`;
+    this.childImgLink = `../../assets/stickers/child-${this.finalData.gender}.jpg`;
     this.audioService.setAudio(
-      `../../assets/stickers/opening-${this.dataService.gender}.m4a`
+      `../../assets/stickers/opening-${this.finalData.gender}.m4a`
     );
 
     this.$audioSubscription1 = this.audioService
       .getTimeElapsed()
       .subscribe((res) => {
-        if (this.dataService.gender === 'M') {
+        if (this.finalData.gender === 'M') {
           this.openingMale(res);
         } else {
           this.openingFemale(res);
@@ -196,37 +191,37 @@ export class StickersComponent implements OnInit {
       switch (this.stage) {
         case 1: {
           this.finalData.board1 = selected;
-          this.finalData.board1 =
+          this.finalData.board1Time =
             now.getTime() - this.finalData.board1Start?.getTime();
           break;
         }
         case 2: {
           this.finalData.board2 = selected;
-          this.finalData.board2 =
+          this.finalData.board2Time =
             now.getTime() - this.finalData.board2Start?.getTime();
           break;
         }
         case 3: {
           this.finalData.board3 = selected;
-          this.finalData.board3 =
+          this.finalData.board3Time =
             now.getTime() - this.finalData.board3Start?.getTime();
           break;
         }
         case 4: {
           this.finalData.board4 = selected;
-          this.finalData.board4 =
+          this.finalData.board4Time =
             now.getTime() - this.finalData.board4Start?.getTime();
           break;
         }
         case 5: {
           this.finalData.board5 = selected;
-          this.finalData.board5 =
+          this.finalData.board5Time =
             now.getTime() - this.finalData.board5Start?.getTime();
           break;
         }
         case 6: {
           this.finalData.board6 = selected;
-          this.finalData.board6 =
+          this.finalData.board6Time =
             now.getTime() - this.finalData.board6Start?.getTime();
           break;
         }
@@ -241,6 +236,7 @@ export class StickersComponent implements OnInit {
     this.$audioSubscription2.unsubscribe();
     this.stage += 1;
     if (this.stage >= 7) {
+      this.calculateData();
       return 0;
     }
     this.calculatePoints();
@@ -420,9 +416,6 @@ export class StickersComponent implements OnInit {
   }
 
   calculateData() {
-    this.finalData.schoolID = this.dataService.schoolID;
-    this.finalData.childID = this.dataService.childID;
-    this.finalData.gender = this.dataService.gender;
     const reqBody = {
       query: `mutation insertData {
         insert_stickers_one(
@@ -458,7 +451,6 @@ export class StickersComponent implements OnInit {
       .subscribe({
         next: (data) => {
           if (!!data.data?.insert_stickers_one) {
-            this.dataService.dataSavedFlag = true;
             const res = data.data.insert_stickers_one;
             console.log(`Input saved under ID ${res.id} on ${res.init_time}`);
           } else {
