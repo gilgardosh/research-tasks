@@ -3,13 +3,40 @@ import { Subscription } from 'rxjs';
 import { credentials } from '../models';
 import { AudioService } from '../shared/services/audio.service';
 import { HttpClient } from '@angular/common/http';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-stickers',
   templateUrl: './stickers.component.html',
   styleUrls: ['./stickers.component.scss'],
+  animations: [
+    trigger('fading', [
+      state(
+        'initial',
+        style({
+          opacity: 1,
+        })
+      ),
+      state(
+        'transparent',
+        style({
+          opacity: 0,
+        })
+      ),
+      transition('initial=>transparent', animate('500ms')),
+      transition('transparent=>initial', animate('0ms')),
+    ]),
+  ],
 })
 export class StickersComponent implements OnInit {
+  checkbox1: boolean;
+  checkbox2: boolean;
   title: string;
   childImgLink: string;
   stage: number;
@@ -21,78 +48,77 @@ export class StickersComponent implements OnInit {
   showSmallChildFlag: boolean = false;
   finnishFlag: boolean = false;
   formFlag: boolean = false;
-  calculatingFlag: boolean;
-  myPointsList: number[];
-  myPoints: number;
+  calculatingFlag: boolean = false;
+  myPointsList: string[];
   boards: boardStickers[] = [
     {
       option1: {
-        me: 0,
-        other: 0,
+        me: [],
+        other: [],
       },
       option2: {
-        me: 0,
-        other: 0,
+        me: [],
+        other: [],
       },
     },
     {
       option1: {
-        me: 2,
-        other: 0,
+        me: ['rgb(251, 184, 55)', 'rgb(184, 241, 64)'],
+        other: [],
       },
       option2: {
-        me: 1,
-        other: 1,
+        me: ['rgb(239, 168, 42)'],
+        other: ['rgb(194, 177, 43)'],
       },
     },
     {
       option1: {
-        me: 1,
-        other: 1,
+        me: ['rgb(186, 240, 35)'],
+        other: ['rgb(246, 228, 108)'],
       },
       option2: {
-        me: 1,
-        other: 0,
+        me: ['rgb(236, 188, 120)'],
+        other: [],
       },
     },
     {
       option1: {
-        me: 0,
-        other: 1,
+        me: [],
+        other: ['rgb(183, 108, 67)'],
       },
       option2: {
-        me: 0,
-        other: 0,
+        me: [],
+        other: [],
       },
     },
     {
       option1: {
-        me: 1,
-        other: 0,
+        me: ['rgb(221, 206, 32)'],
+        other: [],
       },
       option2: {
-        me: 0,
-        other: 1,
+        me: [],
+        other: ['rgb(184, 202, 125)'],
       },
     },
     {
       option1: {
-        me: 3,
-        other: 0,
+        me: ['rgb(184, 241, 64)', 'rgb(203, 132, 80)', 'rgb(213, 132, 130)'],
+        other: [],
       },
       option2: {
-        me: 2,
-        other: 2,
+        me: ['rgb(213, 175, 24)', 'rgb(200, 165, 44)'],
+        other: ['rgb(188, 161, 9)', 'rgb(180, 165, 36)'],
       },
     },
     {
       option1: {
-        me: 0,
-        other: 2,
+        me: [],
+        other: ['rgb(253, 170, 40)', 'rgb(212, 130, 118)'],
       },
       option2: {
-        me: 1,
-        other: 0,
+        me: ['rgb(251, 184, 55)', 'rgb(187, 120, 68)'],
+        other: [],
       },
     },
   ];
@@ -120,6 +146,13 @@ export class StickersComponent implements OnInit {
     board6Start?: Date;
     board6Time?: number;
   } = {};
+  currentState: string = 'transparent';
+  fadingCoin: string;
+
+  changeState() {
+    this.currentState = 'initial';
+    this.currentState = 'transparent';
+  }
 
   /*
    * stages:
@@ -135,7 +168,7 @@ export class StickersComponent implements OnInit {
   constructor(private audioService: AudioService, private http: HttpClient) {
     this.curBoard = this.boards[0];
     this.myPointsList = [];
-    this.myPoints = 0;
+    this.calculatingFlag = true;
   }
 
   ngOnInit(): void {
@@ -178,68 +211,120 @@ export class StickersComponent implements OnInit {
       .subscribe((res) => {
         if (res == 'ended') {
           this.$audioSubscription1.unsubscribe();
-          this.showLargeChildFlag = false;
-          this.showSmallChildFlag = true;
           this.nextStage();
         }
       });
   }
 
-  boardSelect(points: number, selected: number) {
+  async boardSelect(selected: number) {
     if (!this.calculatingFlag) {
-      const now = new Date();
-      switch (this.stage) {
-        case 1: {
-          this.finalData.board1 = selected;
-          this.finalData.board1Time =
-            now.getTime() - this.finalData.board1Start?.getTime();
-          break;
-        }
-        case 2: {
-          this.finalData.board2 = selected;
-          this.finalData.board2Time =
-            now.getTime() - this.finalData.board2Start?.getTime();
-          break;
-        }
-        case 3: {
-          this.finalData.board3 = selected;
-          this.finalData.board3Time =
-            now.getTime() - this.finalData.board3Start?.getTime();
-          break;
-        }
-        case 4: {
-          this.finalData.board4 = selected;
-          this.finalData.board4Time =
-            now.getTime() - this.finalData.board4Start?.getTime();
-          break;
-        }
-        case 5: {
-          this.finalData.board5 = selected;
-          this.finalData.board5Time =
-            now.getTime() - this.finalData.board5Start?.getTime();
-          break;
-        }
-        case 6: {
-          this.finalData.board6 = selected;
-          this.finalData.board6Time =
-            now.getTime() - this.finalData.board6Start?.getTime();
-          break;
-        }
+      this.calculatingFlag = true;
+      this.updateDataByBoardSelection(selected);
+      let selectedBorad: {
+        me: string[];
+        other: string[];
+      } = { me: [], other: [] };
+      let otherBoard: {
+        me: string[];
+        other: string[];
+      } = { me: [], other: [] };
+
+      if (selected == 0) {
+        selectedBorad = this.curBoard.option1;
+        otherBoard = this.curBoard.option2;
+        this.checkbox1 = true;
+      } else {
+        selectedBorad = this.curBoard.option2;
+        otherBoard = this.curBoard.option1;
+        this.checkbox2 = true;
       }
-      this.myPointsList.push(points);
+
+      otherBoard.me = [];
+      otherBoard.other = [];
+
+      let color: string;
+      while (selectedBorad.me.length) {
+        await this.delay(1000);
+        this.audioService.setAudio(`../../assets/stickers/good.wav`);
+        color = selectedBorad.me.pop();
+        this.myPointsList.push(color);
+      }
+
+      while (selectedBorad.other.length) {
+        await this.delay(1000);
+        this.audioService.setAudio(`../../assets/stickers/bad.wav`);
+        this.fadingCoin = selectedBorad.other.pop();
+        this.currentState = 'initial';
+        await this.delay(10);
+        this.currentState = 'transparent';
+      }
+      await this.delay(1000);
+      this.checkbox1 = false;
+      this.checkbox2 = false;
       this.nextStage();
     }
   }
 
-  nextStage() {
+  delay(delayInms) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(2);
+      }, delayInms);
+    });
+  }
+
+  updateDataByBoardSelection(selected: number) {
+    const now = new Date();
+    switch (this.stage) {
+      case 1: {
+        this.finalData.board1 = selected;
+        this.finalData.board1Time =
+          now.getTime() - this.finalData.board1Start?.getTime();
+        break;
+      }
+      case 2: {
+        this.finalData.board2 = selected;
+        this.finalData.board2Time =
+          now.getTime() - this.finalData.board2Start?.getTime();
+        break;
+      }
+      case 3: {
+        this.finalData.board3 = selected;
+        this.finalData.board3Time =
+          now.getTime() - this.finalData.board3Start?.getTime();
+        break;
+      }
+      case 4: {
+        this.finalData.board4 = selected;
+        this.finalData.board4Time =
+          now.getTime() - this.finalData.board4Start?.getTime();
+        break;
+      }
+      case 5: {
+        this.finalData.board5 = selected;
+        this.finalData.board5Time =
+          now.getTime() - this.finalData.board5Start?.getTime();
+        break;
+      }
+      case 6: {
+        this.finalData.board6 = selected;
+        this.finalData.board6Time =
+          now.getTime() - this.finalData.board6Start?.getTime();
+        break;
+      }
+    }
+  }
+
+  async nextStage() {
     this.calculatingFlag = true;
     this.$audioSubscription2.unsubscribe();
-    this.stage += 1;
-    if (this.stage >= 7) {
+    if (this.stage >= 6) {
+      await this.delay(5000);
       this.calculateData();
+      this.stage += 1;
       return 0;
     }
-    this.calculatePoints();
+    this.stage += 1;
     this.playSound();
     this.curBoard = this.boards[this.stage];
     setTimeout(() => {
@@ -251,39 +336,6 @@ export class StickersComponent implements OnInit {
           }
         });
     }, 1000);
-  }
-
-  prevStage() {
-    this.calculatingFlag = true;
-    this.$audioSubscription2.unsubscribe();
-    if (this.stage >= 2) {
-      this.stage -= 1;
-      this.curBoard = this.boards[this.stage];
-    }
-    this.myPointsList.length = this.stage - 1;
-    this.calculatePoints();
-    this.playSound();
-    setTimeout(() => {
-      this.$audioSubscription2 = this.audioService
-        .getPlayerStatus()
-        .subscribe((res) => {
-          if (res == 'ended') {
-            this.calculatingFlag = false;
-          }
-        });
-    }, 1000);
-  }
-
-  async calculatePoints() {
-    let newPoints = 0;
-    for (let x of this.myPointsList) {
-      newPoints += x;
-    }
-    if (this.myPoints > newPoints) {
-      this.myPoints = newPoints;
-    } else if (this.myPoints < newPoints) {
-      this.myPoints = newPoints;
-    }
   }
 
   openingMale(time: string) {
@@ -470,11 +522,11 @@ export class StickersComponent implements OnInit {
 
 interface boardStickers {
   option1: {
-    me: number;
-    other: number;
+    me: string[];
+    other: string[];
   };
   option2: {
-    me: number;
-    other: number;
+    me: string[];
+    other: string[];
   };
 }

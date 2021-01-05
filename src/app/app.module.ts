@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { ValuesSet2Component } from './values-ranking/values-set2/values-set2.co
 import { RankSet2Component } from './values-ranking/rank-set2/rank-set2.component';
 import { SummaryComponent } from './values-ranking/summary/summary.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     RankSet2Component,
     SummaryComponent,
   ],
-  imports: [BrowserModule, SharedModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    SharedModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

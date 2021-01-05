@@ -5,57 +5,85 @@
     <div class="header">
         <h1 [innerHTML]="title" style="text-align: center;"></h1>
     </div>
-    <div class="boards" *ngIf="showBoardsFlag">
-        <div class="board-container">
-            <div class="board" (click)="boardSelect(curBoard.option1.me, 0)">
-                <div class="board-side yellow">
-                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option1.other)">
-                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+    <table class="boards-table">
+        <tr class="yellow-half">
+            <td class="palyer">
+                <div class="child-small">
+                    <img class="child-small-img" [src]="childImgLink">
+                </div>
+            </td>
+            <td class="bank">
+                <div class="other-bank">
+                    <div class=fadingStar [@fading]=currentState>
+                        <mat-icon [ngStyle]="{'color': fadingCoin}" class="coin">star</mat-icon>
+                    </div>
+                    <img class="envelope-img" src="../../assets/images/envelope.png">
+                </div>
+            </td>
+            <td class="board-column higher">
+                <mat-checkbox class="checkbox" color="primary" [(ngModel)]="checkbox1" (click)="boardSelect(0)"
+                    [disabled]="calculatingFlag">אפשרות א'</mat-checkbox>
+                <div class="board-side yellow" (click)="boardSelect(0)"
+                    [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
+                    <div class="board-coin" *ngFor="let coin of curBoard.option1.other">
+                        <div class="bank-coin">
+                            <mat-icon [ngStyle]="{'color': coin}" class="coin">star</mat-icon>
+                        </div>
                     </div>
                 </div>
-                <div class="board-side blue">
-                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option1.me)">
-                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+            </td>
+            <td class="board-column higher">
+                <mat-checkbox class="checkbox" color="primary" [(ngModel)]="checkbox2" (click)="boardSelect(1)"
+                    [disabled]="calculatingFlag">אפשרות ב'</mat-checkbox>
+                <div class="board-side yellow" (click)="boardSelect(1)"
+                    [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
+                    <div class="board-coin" *ngFor="let coin of curBoard.option2.other">
+                        <div class="bank-coin">
+                            <mat-icon [ngStyle]="{'color': coin}" class="coin">star</mat-icon>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="child-large" *ngIf="showLargeChildFlag">
-            <img class="child-large-img" [src]="childImgLink">
-        </div>
-        <div class="child-small" *ngIf="showSmallChildFlag">
-            <img class="child-small-img" [src]="childImgLink">
-        </div>
-        <div class="board-container">
-            <div class="board" (click)="boardSelect(curBoard.option2.me, 1)">
-                <div class="board-side yellow">
-                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option2.other)">
-                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+            </td>
+        </tr>
+        <tr class="blue-half">
+            <td class="palyer">
+                <div class="me">
+                    <h1 style='text-align: center; font-size: 2vw;'>אני</h1>
+                </div>
+            </td>
+            <td class="bank">
+                <div class="me-bank">
+                    <div class="inner-jar">
+                        <div *ngFor="let coin of myPointsList">
+                            <mat-icon [ngStyle]="{'color': coin}" class="jar-coin">star</mat-icon>
+                        </div>
                     </div>
                 </div>
-                <div class="board-side blue">
-                    <div class="board-coin" *ngFor="let coin of [].constructor(curBoard.option2.me)">
-                        <div class="bank-coin"><img class="coin" src="../../assets/images/sticker.png"></div>
+            </td>
+            <td class="board-column lower">
+                <div class="board-side blue" (click)="boardSelect(0)"
+                    [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
+                    <div class="board-coin" *ngFor="let coin of curBoard.option1.me">
+                        <div class="bank-coin">
+                            <mat-icon [ngStyle]="{'color': coin}" class="coin">star</mat-icon>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="bank" *ngIf="showSmallChildFlag">
-        <div class="bank-title">
-            <h1 style="text-align: center;">נקודות שצברתי:</h1>
-        </div>
-        <div class="bank-coin" *ngFor="let coin of [].constructor(myPoints)">
-            <img class="coin" src="../../assets/images/sticker.png">
-        </div>
-        <div class="gap"></div>
-        <div class="button">
-            <button mat-raised-button color="primary" (click)="prevStage()" [disabled]="calculatingFlag">
-                צעד אחורה
-            </button>
-        </div>
-    </div>
+            </td>
+            <td class="board-column lower">
+                <div class="board-side blue" (click)="boardSelect(1)"
+                    [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
+                    <div class="board-coin" *ngFor="let coin of curBoard.option2.me">
+                        <div class="bank-coin">
+                            <mat-icon [ngStyle]="{'color': coin}" class="coin">star</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
-<div *ngIf="this.stage >= 7">
-    Todo: handle app end
+<div class="container" style="background-color: skyblue;" *ngIf="stage >= 7">
+    <h1 style="text-align: center; vertical-align: middle;">תודה על שיתוף הפעולה!</h1>
+
 </div>

@@ -27,69 +27,99 @@
   align-content: center;
 }
 
-.boards {
-  height: 80vh;
+.boards-table {
+  height: 90vh;
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-content: space-around;
 }
 
-.child-large {
-  height: 80vh;
-  width: 40vw;
-  padding: 5px;
+.yellow-half {
+  height: 45vh;
+  background-color: rgb(230, 230, 150);
+}
+
+.blue-half {
+  height: 45vh;
+  background-color: lightblue;
+}
+
+.player, .bank {
+  vertical-align: middle;
+  height: 45vh;
+}
+
+.player {
+  width: 15vw
+}
+
+.bank  {
+  width: 25vw
+}
+
+.board-column {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  width: 30vw;
+  height: 45vh;
+}
+
+.higher {
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.lower {
+  vertical-align: top;
+  text-align: center;
+}
+
+.child-small, .other-bank, .me, .me-bank {
+  text-align: center;
+  vertical-align: middle;
+  height: 40vh;
+}
+
+.child-small, .me {
+  width: 15vw;
+}
+.me {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-content: center;
+  margin: auto;
 }
 
-.child-small {
-  height: 80vh;
-  width: 10vw;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
+.other-bank, .me-bank {
+  width: 25vw;
 }
 
-.child-large-img {
-  width: 38vw;
-  max-width: 38vw;
-  height: 50vw;
-  max-height: 50vw;
+.me-bank {
+  background-image: url('../../assets/images/jar.png');
+  background-size:  contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .child-small-img {
-  width: 10vw;
-  max-width: 10vw;
-  height: 14vw;
-  max-height: 14vw;
+  width: 90%;
+  max-width: 14vw;
+  height: 90%;
+  max-height: 35vh;
 }
 
-.board-container {
-  height: 80vh;
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-}
-
-.board {
-  cursor: pointer;
+.envelope-img {
+  width: 80%;
+  max-width: 24vw;
 }
 
 .board-side {
-  height: 30vh;
-  width: 30vw;
+  height: 35vh;
+  width: 25vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  align-items: center;
 }
 
 .yellow {
@@ -100,31 +130,9 @@
   background-color: blue;
 }
 
-.board-coin {
-  height: 30vh;
-  width: 10vh;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-}
-
-.bank {
-  height: 10vh;
-  width: 100vw;
-  background-color: skyblue;
-  display: flex;
-  flex-direction: row;
-}
-
-.bank-title {
-  height: 10vh;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+.checkbox {
+  color: primary;
+  font-size: 1.5vw;
 }
 
 .bank-coin {
@@ -140,22 +148,98 @@
 .coin {
   height: 8vh;
   width: 8vh;
-  margin: 5px;
-  box-shadow: 2px 2px 4px #000000;
-  background-color: white;
-  border-radius: 50%;
+  text-shadow: 2px 2px 4px #000000;
   display: inline-block;
+  font-size: 8vh;
 }
 
-.gap {
-  flex-grow: 4;
+.fadingStar {
+  position: absolute;
+  right: 26vw;
+  top: 30vh;
 }
 
-.button {
-  height: 10vh;
-  padding: 10px;
+.inner-jar {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20%;
   justify-content: center;
   align-content: center;
 }
+
+.jar-coin {
+  height: 8vh;
+  width: 8vh;
+  text-shadow: 2px 2px 4px #000000;
+  display: inline-block;
+  font-size: 8vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+// .boards {
+//   height: 90vh;
+//   width: 100vw;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+//   align-content: space-around;
+// }
+
+
+// .board-container {
+//   height: 80vh;
+//   width: 30vw;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-content: center;
+// }
+
+// .board-coin {
+//   height: 10vh;
+//   width: 10vh;
+//   padding: 5px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-content: center;
+// }
+
+// .bank {
+//   height: 10vh;
+//   width: 100vw;
+//   background-color: skyblue;
+//   display: flex;
+//   flex-direction: row;
+// }
+
+// .bank-title {
+//   height: 10vh;
+//   padding: 5px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-content: center;
+// }
+
+// .gap {
+//   flex-grow: 4;
+// }
+
+// .button {
+//   height: 10vh;
+//   padding: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-content: center;
+// }
