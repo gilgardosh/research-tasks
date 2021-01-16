@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { credentials } from '../../models';
+import { Credentials } from '../../models';
 
 @Component({
   selector: 'app-entering-form',
@@ -8,8 +8,8 @@ import { credentials } from '../../models';
   styleUrls: ['./entering-form.component.scss'],
 })
 export class EnteringFormComponent implements OnInit {
-  @Output() gotCreds: EventEmitter<credentials> = new EventEmitter<
-    credentials
+  @Output() gotCreds: EventEmitter<Credentials> = new EventEmitter<
+    Credentials
   >();
   schoolID = new FormControl('', [
     Validators.required,
@@ -19,22 +19,22 @@ export class EnteringFormComponent implements OnInit {
     Validators.required,
     Validators.pattern('[0-9]*'),
   ]);
-  creds: credentials = {
+  creds: Credentials = {
     schoolID: '',
     childID: 'a',
     gender: 'M',
   };
-  invalidSchoolIDFlag: boolean = false;
-  invalidChildIDFlag: boolean = false;
+  invalidSchoolIDFlag = false;
+  invalidChildIDFlag = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  start(): credentials | void {
-    if (!!this.schoolID.errors || this.schoolID.value == 0) {
+  start(): Credentials | void {
+    if (!!this.schoolID.errors || this.schoolID.value === 0) {
       this.invalidSchoolIDFlag = true;
-    } else if (!!this.childID.errors || this.childID.value == 0) {
+    } else if (!!this.childID.errors || this.childID.value === 0) {
       this.invalidSchoolIDFlag = false;
       this.invalidChildIDFlag = true;
     } else {

@@ -1,9 +1,9 @@
 export class DataService {
-  dataSavedFlag: boolean = false;
+  dataSavedFlag = false;
   schoolID: string;
   childID: string;
   gender: 'M' | 'F' = 'M';
-  pbvs1: pbvs = {
+  pbvs1: Pbvs = {
     valNum: 3,
     text: '',
     imgLink: 'val3.png',
@@ -11,7 +11,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs2: pbvs = {
+  pbvs2: Pbvs = {
     valNum: 2,
     text: '',
     imgLink: 'val2.png',
@@ -19,7 +19,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs3: pbvs = {
+  pbvs3: Pbvs = {
     valNum: 6,
     text: 'להנות מהחיים',
     imgLink: 'val6.png',
@@ -27,7 +27,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs4: pbvs = {
+  pbvs4: Pbvs = {
     valNum: 7,
     text: 'לעשות דברים מרגשים',
     imgLink: 'val7.png',
@@ -35,7 +35,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs5: pbvs = {
+  pbvs5: Pbvs = {
     valNum: 8,
     text: 'לגלות דברים חדשים',
     imgLink: 'val8.png',
@@ -43,7 +43,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs6: pbvs = {
+  pbvs6: Pbvs = {
     valNum: 1,
     text: 'לשמור על הבטיחות',
     imgLink: 'val1.png',
@@ -51,7 +51,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs7: pbvs = {
+  pbvs7: Pbvs = {
     valNum: 0,
     text: 'לשמור על החוקים',
     imgLink: 'val0.png',
@@ -59,7 +59,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs8: pbvs = {
+  pbvs8: Pbvs = {
     valNum: 4,
     text: 'לשמור על המסורת',
     imgLink: 'val4.png',
@@ -67,7 +67,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs9: pbvs = {
+  pbvs9: Pbvs = {
     valNum: 5,
     text: 'לעזור לאחרים',
     imgLink: 'val5.png',
@@ -75,7 +75,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs10: pbvs = {
+  pbvs10: Pbvs = {
     valNum: 9,
     text: '',
     imgLink: 'val9.png',
@@ -83,7 +83,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs11: pbvs = {
+  pbvs11: Pbvs = {
     valNum: 12,
     text: '',
     imgLink: 'val12.png',
@@ -91,7 +91,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs12: pbvs = {
+  pbvs12: Pbvs = {
     valNum: 10,
     text: '',
     imgLink: 'val10.png',
@@ -99,7 +99,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs13: pbvs = {
+  pbvs13: Pbvs = {
     valNum: 11,
     text: 'לעשות חיים',
     imgLink: 'val11.png',
@@ -107,7 +107,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs14: pbvs = {
+  pbvs14: Pbvs = {
     valNum: 13,
     text: 'לצאת להרפתקאות',
     imgLink: 'val13.png',
@@ -115,7 +115,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs15: pbvs = {
+  pbvs15: Pbvs = {
     valNum: 14,
     text: 'להפעיל את הדמיון',
     imgLink: 'val14.png',
@@ -123,7 +123,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs16: pbvs = {
+  pbvs16: Pbvs = {
     valNum: 18,
     text: '',
     imgLink: 'val18.png',
@@ -131,7 +131,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs17: pbvs = {
+  pbvs17: Pbvs = {
     valNum: 15,
     text: 'להיות כמו כולם',
     imgLink: 'val15.png',
@@ -139,7 +139,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs18: pbvs = {
+  pbvs18: Pbvs = {
     valNum: 19,
     text: 'ללמוד על מה שהיה פעם מזמן',
     imgLink: 'val19.png',
@@ -147,7 +147,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs19: pbvs = {
+  pbvs19: Pbvs = {
     valNum: 16,
     text: 'לשמח אחרים',
     imgLink: 'val16.png',
@@ -155,7 +155,7 @@ export class DataService {
     rank: null,
     isStock: true,
   };
-  pbvs20: pbvs = {
+  pbvs20: Pbvs = {
     valNum: 17,
     text: 'לשמור על הטבע',
     imgLink: 'val17.png',
@@ -189,7 +189,7 @@ export class DataService {
   }
 }
 
-export interface pbvs {
+export interface Pbvs {
   valNum: number;
   text: string;
   imgLink: string;

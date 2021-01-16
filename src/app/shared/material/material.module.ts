@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-//Angular Material Components
+// Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -47,7 +47,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+// import { DragDropModule } from '@angular/cdk/drag-drop';
 import {
   NgbModule,
   NgbCollapseModule,
@@ -74,7 +74,7 @@ import {
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
-    DragDropModule,
+    // DragDropModule,
     /* Material */
     BrowserAnimationsModule,
     MatAutocompleteModule,

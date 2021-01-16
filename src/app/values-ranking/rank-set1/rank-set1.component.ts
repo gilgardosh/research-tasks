@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { AudioService } from 'src/app/shared/services/audio.service';
-import { pbvs, DataService } from '../../shared/services/data.service';
+import { Pbvs, DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-rank-set1',
@@ -17,10 +17,10 @@ import { pbvs, DataService } from '../../shared/services/data.service';
 })
 export class RankSet1Component implements OnInit, OnDestroy {
   @Output() gotRanking: EventEmitter<boolean> = new EventEmitter<boolean>();
-  isMale: boolean = true;
+  isMale = true;
   title: string;
-  stage: number = 1;
-  calculating: boolean = false;
+  stage = 1;
+  calculating = false;
   playerSubscription: Subscription;
   playerworking: Subscription;
 
@@ -61,7 +61,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
     this.playerworking = this.audioService
       .getPlayerStatus()
       .subscribe((res) => {
-        if (res != 'ended') {
+        if (res !== 'ended') {
           this.calculating = true;
         } else {
           this.calculating = false;
@@ -75,7 +75,9 @@ export class RankSet1Component implements OnInit, OnDestroy {
   }
 
   unsubscribe(sub: Subscription) {
-    if (sub) sub.unsubscribe();
+    if (sub) {
+      sub.unsubscribe();
+    }
   }
 
   stepback() {
@@ -98,7 +100,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
     this.calculating = false;
   }
 
-  valueClick(val: pbvs) {
+  valueClick(val: Pbvs) {
     if (!this.calculating) {
       this.calculating = true;
       this.unsubscribe(this.playerSubscription);
@@ -112,14 +114,14 @@ export class RankSet1Component implements OnInit, OnDestroy {
         // inner delated func
         const stage7 = () => {
           this.playerSubscription = subscription.subscribe((res) => {
-            if (res == 'ended') {
+            if (res === 'ended') {
               for (let i = 1; i <= 10; i++) {
                 if (this.dataService['pbvs' + i].isStock) {
-                  let val = this.dataService['pbvs' + i];
+                  const value = this.dataService['pbvs' + i];
                   this.stage += 1;
-                  val.isStock = false;
-                  val.rank = this.getRank(this.valuesStages[this.stage - 2]);
-                  this.orderedValues[this.valuesStages[this.stage - 2]] = val;
+                  value.isStock = false;
+                  value.rank = this.getRank(this.valuesStages[this.stage - 2]);
+                  this.orderedValues[this.valuesStages[this.stage - 2]] = value;
                 }
               }
               this.calculating = false;
@@ -205,15 +207,11 @@ export class RankSet1Component implements OnInit, OnDestroy {
         renkVal = 5;
         break;
       }
-      case 'very1': {
-      }
-      case 'very2': {
+      case 'very2' || 'very1': {
         renkVal = 4;
         break;
       }
-      case 'not1': {
-      }
-      case 'not2': {
+      case 'not2' || 'not1': {
         renkVal = 2;
         break;
       }
@@ -221,13 +219,7 @@ export class RankSet1Component implements OnInit, OnDestroy {
         renkVal = 1;
         break;
       }
-      case 'average1': {
-      }
-      case 'average2': {
-      }
-      case 'average3': {
-      }
-      case 'average4': {
+      case 'average4' || 'average3' || 'average2' || 'average1': {
         renkVal = 3;
         break;
       }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { credentials } from '../models';
+import { Credentials } from '../models';
 import { DataService } from '../shared/services/data.service';
 
 @Component({
@@ -19,14 +19,14 @@ export class ValuesRankingComponent implements OnInit {
    * 6 - summary
    */
 
-  scene: number = 1;
-  creds: credentials;
+  scene = 1;
+  creds: Credentials;
 
   constructor(private dataService: DataService, private http: HttpClient) {}
 
   ngOnInit(): void {}
 
-  scene1(creds: credentials) {
+  scene1(creds: Credentials) {
     this.dataService.schoolID = creds.schoolID;
     this.dataService.childID = creds.childID;
     this.dataService.setGender(creds.gender);

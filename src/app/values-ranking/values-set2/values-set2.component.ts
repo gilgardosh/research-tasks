@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AudioService } from 'src/app/shared/services/audio.service';
-import { pbvs, DataService } from '../../shared/services/data.service';
+import { Pbvs, DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-values-set2',
@@ -12,7 +12,7 @@ export class ValuesSet2Component implements OnInit {
   @Output() openingEnded: EventEmitter<boolean> = new EventEmitter<boolean>();
   subtitle: string;
   imgLink: string = null;
-  vs2Stage: number = 1;
+  vs2Stage = 1;
   /**
    * vs2Stages:
    * 1 - opening
@@ -45,7 +45,7 @@ export class ValuesSet2Component implements OnInit {
     });
 
     this.audioService.getPlayerStatus().subscribe((res) => {
-      if (res == 'ended') {
+      if (res === 'ended') {
         this.vs2Stage += 1;
         this.introduceValues();
       }
@@ -53,7 +53,7 @@ export class ValuesSet2Component implements OnInit {
   }
 
   introduceValues() {
-    let curVal: pbvs;
+    let curVal: Pbvs;
     switch (this.vs2Stage) {
       case 2: {
         curVal = this.dataService.pbvs11;

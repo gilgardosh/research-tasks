@@ -27,21 +27,21 @@ export class AudioService {
   }
 
   private calculateTime = (evt) => {
-    let ct = this.audio.currentTime;
-    let d = this.audio.duration;
+    const ct = this.audio.currentTime;
+    const d = this.audio.duration;
     this.setTimeElapsed(ct);
     this.setPercentElapsed(d, ct);
     this.setTimeRemaining(d, ct);
-  };
+  }
 
   private calculatePercentLoaded = (evt) => {
     if (this.audio.duration > 0) {
-      for (var i = 0; i < this.audio.buffered.length; i++) {
+      for (let i = 0; i < this.audio.buffered.length; i++) {
         if (
           this.audio.buffered.start(this.audio.buffered.length - 1 - i) <
           this.audio.currentTime
         ) {
-          let percent =
+          const percent =
             (this.audio.buffered.end(this.audio.buffered.length - 1 - i) /
               this.audio.duration) *
             100;
@@ -50,7 +50,7 @@ export class AudioService {
         }
       }
     }
-  };
+  }
 
   private setPlayerStatus = (evt) => {
     switch (evt.type) {
@@ -70,7 +70,7 @@ export class AudioService {
         this.playerStatus.next('paused');
         break;
     }
-  };
+  }
 
   /**
    * If you need the audio instance in your component for some reason, use this.
@@ -81,7 +81,6 @@ export class AudioService {
 
   /**
    * This is typically a URL to an MP3 file
-   * @param src
    */
   public setAudio(src: string): void {
     this.audio.src = src;
@@ -104,7 +103,6 @@ export class AudioService {
 
   /**
    * Method to seek to a position on the audio track (in milliseconds, I think),
-   * @param position
    */
   public seekAudio(position: number): void {
     this.audio.currentTime = position;
@@ -113,13 +111,12 @@ export class AudioService {
   /**
    * This formats the audio's elapsed time into a human readable format, could be refactored into a Pipe.
    * It takes the audio track's "currentTime" property as an argument. It is called from the, calulateTime method.
-   * @param ct
    */
   private setTimeElapsed(ct: number): void {
-    let seconds = Math.floor(ct % 60),
-      displaySecs = seconds < 10 ? '0' + seconds : seconds,
-      minutes = Math.floor((ct / 60) % 60),
-      displayMins = minutes < 10 ? '0' + minutes : minutes;
+    const seconds = Math.floor(ct % 60);
+    const displaySecs = seconds < 10 ? '0' + seconds : seconds;
+    const minutes = Math.floor((ct / 60) % 60);
+    const displayMins = minutes < 10 ? '0' + minutes : minutes;
 
     this.timeElapsed.next(displayMins + ':' + displaySecs);
   }
@@ -127,17 +124,15 @@ export class AudioService {
   /**
    * This method takes the track's "duration" and "currentTime" properties to calculate the remaing time the track has
    * left to play. It is called from the calculateTime method.
-   * @param d
-   * @param t
    */
   private setTimeRemaining(d: number, t: number): void {
     let remaining;
-    let timeLeft = d - t,
-      seconds = Math.floor(timeLeft % 60) || 0,
-      remainingSeconds = seconds < 10 ? '0' + seconds : seconds,
-      minutes = Math.floor((timeLeft / 60) % 60) || 0,
-      remainingMinutes = minutes < 10 ? '0' + minutes : minutes,
-      hours = Math.floor((timeLeft / 60 / 60) % 60) || 0;
+    const timeLeft = d - t;
+    const seconds = Math.floor(timeLeft % 60) || 0;
+    const remainingSeconds = seconds < 10 ? '0' + seconds : seconds;
+    const minutes = Math.floor((timeLeft / 60) % 60) || 0;
+    const remainingMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const hours = Math.floor((timeLeft / 60 / 60) % 60) || 0;
 
     // remaining = (hours === 0)
     if (hours === 0) {
@@ -151,8 +146,6 @@ export class AudioService {
   /**
    * This method takes the track's "duration" and "currentTime" properties to calculate the percent of time elapsed.
    * This is valuable for setting the position of a range input. It is called from the calculateTime method.
-   * @param d
-   * @param ct
    */
   private setPercentElapsed(d: number, ct: number): void {
     this.percentElapsed.next(Math.floor((100 / d) * ct) || 0);
@@ -161,7 +154,6 @@ export class AudioService {
   /**
    * This method takes the track's "duration" and "currentTime" properties to calculate the percent of time elapsed.
    * This is valuable for setting the position of a range input. It is called from the calculatePercentLoaded method.
-   * @param p
    */
   private setPercentLoaded(p): void {
     this.percentLoaded.next(parseInt(p, 10) || 0);

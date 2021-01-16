@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { credentials } from '../models';
+import { Credentials } from '../models';
 import { AudioService } from '../shared/services/audio.service';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -34,23 +34,23 @@ import {
     ]),
   ],
 })
-export class StickersComponent implements OnInit {
+export class StickersComponent implements OnInit, OnDestroy {
   checkbox1: boolean;
   checkbox2: boolean;
   title: string;
   childImgLink: string;
   stage: number;
-  isMale: boolean = true;
+  isMale = true;
   $audioSubscription1 = new Subscription();
   $audioSubscription2 = new Subscription();
-  showBoardsFlag: boolean = false;
-  showLargeChildFlag: boolean = false;
-  showSmallChildFlag: boolean = false;
-  finnishFlag: boolean = false;
-  formFlag: boolean = false;
-  calculatingFlag: boolean = false;
+  showBoardsFlag = false;
+  showLargeChildFlag = false;
+  showSmallChildFlag = false;
+  finnishFlag = false;
+  formFlag = false;
+  calculatingFlag = false;
   myPointsList: string[];
-  boards: boardStickers[] = [
+  boards: BoardStickers[] = [
     {
       option1: {
         me: [],
@@ -122,7 +122,7 @@ export class StickersComponent implements OnInit {
       },
     },
   ];
-  curBoard: boardStickers;
+  curBoard: BoardStickers;
   finalData: {
     schoolID?: string;
     childID?: string;
@@ -146,7 +146,7 @@ export class StickersComponent implements OnInit {
     board6Start?: Date;
     board6Time?: number;
   } = {};
-  currentState: string = 'transparent';
+  currentState = 'transparent';
   fadingCoin: string;
 
   changeState() {
@@ -181,7 +181,7 @@ export class StickersComponent implements OnInit {
     this.$audioSubscription2.unsubscribe();
   }
 
-  getCreds(creds: credentials) {
+  getCreds(creds: Credentials) {
     this.finalData.schoolID = creds.schoolID;
     this.finalData.childID = creds.childID;
     this.finalData.gender = creds.gender;
@@ -209,7 +209,7 @@ export class StickersComponent implements OnInit {
     this.$audioSubscription2 = this.audioService
       .getPlayerStatus()
       .subscribe((res) => {
-        if (res == 'ended') {
+        if (res === 'ended') {
           this.$audioSubscription1.unsubscribe();
           this.nextStage();
         }
@@ -229,7 +229,7 @@ export class StickersComponent implements OnInit {
         other: string[];
       } = { me: [], other: [] };
 
-      if (selected == 0) {
+      if (selected === 0) {
         selectedBorad = this.curBoard.option1;
         otherBoard = this.curBoard.option2;
         this.checkbox1 = true;
@@ -331,7 +331,7 @@ export class StickersComponent implements OnInit {
       this.$audioSubscription2 = this.audioService
         .getPlayerStatus()
         .subscribe((res) => {
-          if (res == 'ended') {
+          if (res === 'ended') {
             this.calculatingFlag = false;
           }
         });
@@ -520,7 +520,7 @@ export class StickersComponent implements OnInit {
   }
 }
 
-interface boardStickers {
+interface BoardStickers {
   option1: {
     me: string[];
     other: string[];

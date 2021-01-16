@@ -17,7 +17,7 @@ export class SummaryComponent implements OnInit {
   // veryImg2: string = '';
   // notImg1: string = '';
   // notImg2: string = '';
-  randomView: boolean = true;
+  randomView = true;
 
   constructor(
     private audioService: AudioService,
@@ -25,18 +25,18 @@ export class SummaryComponent implements OnInit {
   ) {
     this.randomView = Math.random() > 0.5;
     for (let i = 1; i <= 10; i++) {
-      let curVal = this.dataService['pbvs' + i];
-      if (curVal.rank == 5) {
+      const curVal = this.dataService['pbvs' + i];
+      if (curVal.rank === 5) {
         this.very1 = curVal;
-      } else if (curVal.rank == 1) {
+      } else if (curVal.rank === 1) {
         this.not1 = curVal;
       }
     }
     for (let i = 11; i <= 20; i++) {
-      let curVal = this.dataService['pbvs' + i];
-      if (curVal.rank == 5) {
+      const curVal = this.dataService['pbvs' + i];
+      if (curVal.rank === 5) {
         this.very2 = curVal;
-      } else if (curVal.rank == 1) {
+      } else if (curVal.rank === 1) {
         this.not2 = curVal;
       }
     }
