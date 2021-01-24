@@ -44,8 +44,8 @@ export class StickersComponent implements OnInit, OnDestroy {
   $audioSubscription1 = new Subscription();
   $audioSubscription2 = new Subscription();
   showBoardsFlag = false;
-  showLargeChildFlag = false;
   showSmallChildFlag = false;
+  showMeFlag = false;
   finnishFlag = false;
   formFlag = false;
   calculatingFlag = false;
@@ -63,28 +63,28 @@ export class StickersComponent implements OnInit, OnDestroy {
     },
     {
       option1: {
-        me: ['rgb(251, 184, 55)', 'rgb(184, 241, 64)'],
+        me: ['gold', 'gold'],
         other: [],
       },
       option2: {
-        me: ['rgb(239, 168, 42)'],
-        other: ['rgb(194, 177, 43)'],
+        me: ['gold'],
+        other: ['gold'],
       },
     },
     {
       option1: {
-        me: ['rgb(186, 240, 35)'],
-        other: ['rgb(246, 228, 108)'],
+        me: ['gold'],
+        other: ['gold'],
       },
       option2: {
-        me: ['rgb(236, 188, 120)'],
+        me: ['gold'],
         other: [],
       },
     },
     {
       option1: {
         me: [],
-        other: ['rgb(183, 108, 67)'],
+        other: ['gold'],
       },
       option2: {
         me: [],
@@ -93,31 +93,31 @@ export class StickersComponent implements OnInit, OnDestroy {
     },
     {
       option1: {
-        me: ['rgb(221, 206, 32)'],
+        me: ['gold'],
         other: [],
       },
       option2: {
         me: [],
-        other: ['rgb(184, 202, 125)'],
+        other: ['gold'],
       },
     },
     {
       option1: {
-        me: ['rgb(184, 241, 64)', 'rgb(203, 132, 80)', 'rgb(213, 132, 130)'],
+        me: ['gold', 'gold', 'gold'],
         other: [],
       },
       option2: {
-        me: ['rgb(213, 175, 24)', 'rgb(200, 165, 44)'],
-        other: ['rgb(188, 161, 9)', 'rgb(180, 165, 36)'],
+        me: ['gold', 'gold'],
+        other: ['gold', 'gold'],
       },
     },
     {
       option1: {
         me: [],
-        other: ['rgb(253, 170, 40)', 'rgb(212, 130, 118)'],
+        other: ['gold', 'gold'],
       },
       option2: {
-        me: ['rgb(251, 184, 55)', 'rgb(187, 120, 68)'],
+        me: ['gold', 'gold'],
         other: [],
       },
     },
@@ -353,13 +353,14 @@ export class StickersComponent implements OnInit, OnDestroy {
         break;
       }
       case '00:23': {
+        this.showMeFlag = true;
         this.title = `
         מה שבחצי הצהוב זה בשביל הילד שאתה לא מכיר ולא פגשת אף פעם, הילד הזה
         `;
         break;
       }
       case '00:30': {
-        this.showLargeChildFlag = true;
+        this.showSmallChildFlag = true;
         this.title =
           'אתה רק צריך לבחור איזה דף אתה מעדיף, ואני אתן לך ולילד השני את הנקודות שבדף שתבחר';
         break;
@@ -382,13 +383,14 @@ export class StickersComponent implements OnInit, OnDestroy {
         break;
       }
       case '00:23': {
+        this.showMeFlag = true;
         this.title = `
         מה שבחצי הצהוב זה בשביל הילדה שאת לא מכירה ולא פגשת אף פעם, הילדה הזאת
         `;
         break;
       }
       case '00:29': {
-        this.showLargeChildFlag = true;
+        this.showSmallChildFlag = true;
         break;
       }
       case '00:30': {

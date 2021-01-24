@@ -1,5 +1,5 @@
 <div class="form" *ngIf="!formFlag">
-    <app-entering-form (gotCreds)=getCreds($event)></app-entering-form>
+    <app-entering-form (gotCreds)="getCreds($event)"></app-entering-form>
 </div>
 <div class="containter" *ngIf="formFlag && stage < 7">
     <div class="header">
@@ -9,21 +9,21 @@
         <tr class="yellow-half">
             <td class="palyer">
                 <div class="child-small">
-                    <img class="child-small-img" [src]="childImgLink">
+                    <img *ngIf="showSmallChildFlag" class="child-small-img" [src]="childImgLink">
                 </div>
             </td>
             <td class="bank">
-                <div class="other-bank">
-                    <div class=fadingStar [@fading]=currentState>
+                <div *ngIf="showSmallChildFlag" class="other-bank">
+                    <div class=fadingStar [@fading]="currentState">
                         <mat-icon [ngStyle]="{'color': fadingCoin}" class="coin">star</mat-icon>
                     </div>
                     <img class="envelope-img" src="../../assets/images/envelope.png">
                 </div>
             </td>
             <td class="board-column higher">
-                <mat-checkbox class="checkbox" color="primary" [(ngModel)]="checkbox1" (click)="boardSelect(0)"
-                    [disabled]="calculatingFlag">אפשרות א'</mat-checkbox>
-                <div class="board-side yellow" (click)="boardSelect(0)"
+                <mat-checkbox *ngIf="showBoardsFlag" class="checkbox" color="primary" [(ngModel)]="checkbox1"
+                    (click)="boardSelect(0)" [disabled]="calculatingFlag">אפשרות א'</mat-checkbox>
+                <div *ngIf="showBoardsFlag" class="board-side yellow" (click)="boardSelect(0)"
                     [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
                     <div class="board-coin" *ngFor="let coin of curBoard.option1.other">
                         <div class="bank-coin">
@@ -33,9 +33,9 @@
                 </div>
             </td>
             <td class="board-column higher">
-                <mat-checkbox class="checkbox" color="primary" [(ngModel)]="checkbox2" (click)="boardSelect(1)"
-                    [disabled]="calculatingFlag">אפשרות ב'</mat-checkbox>
-                <div class="board-side yellow" (click)="boardSelect(1)"
+                <mat-checkbox *ngIf="showBoardsFlag" class="checkbox" color="primary" [(ngModel)]="checkbox2"
+                    (click)="boardSelect(1)" [disabled]="calculatingFlag">אפשרות ב'</mat-checkbox>
+                <div *ngIf="showBoardsFlag" class="board-side yellow" (click)="boardSelect(1)"
                     [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
                     <div class="board-coin" *ngFor="let coin of curBoard.option2.other">
                         <div class="bank-coin">
@@ -47,21 +47,21 @@
         </tr>
         <tr class="blue-half">
             <td class="palyer">
-                <div class="me">
+                <div *ngIf="showMeFlag" class="me">
                     <h1 style='text-align: center; font-size: 2vw;'>אני</h1>
                 </div>
             </td>
             <td class="bank">
-                <div class="me-bank">
+                <div *ngIf="showMeFlag" class="me-bank">
                     <div class="inner-jar">
                         <div *ngFor="let coin of myPointsList">
-                            <mat-icon [ngStyle]="{'color': coin}" class="jar-coin">star</mat-icon>
+                            <mat-icon [ngStyle]="{'color': 'rgba(214, 214, 0, 0.625)'}" class="jar-coin">star</mat-icon>
                         </div>
                     </div>
                 </div>
             </td>
             <td class="board-column lower">
-                <div class="board-side blue" (click)="boardSelect(0)"
+                <div *ngIf="showBoardsFlag" class="board-side blue" (click)="boardSelect(0)"
                     [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
                     <div class="board-coin" *ngFor="let coin of curBoard.option1.me">
                         <div class="bank-coin">
@@ -71,7 +71,7 @@
                 </div>
             </td>
             <td class="board-column lower">
-                <div class="board-side blue" (click)="boardSelect(1)"
+                <div *ngIf="showBoardsFlag" class="board-side blue" (click)="boardSelect(1)"
                     [ngStyle]="{'cursor': (calculatingFlag ? 'auto' : 'pointer')}">
                     <div class="board-coin" *ngFor="let coin of curBoard.option2.me">
                         <div class="bank-coin">
