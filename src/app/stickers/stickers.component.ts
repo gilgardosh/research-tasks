@@ -118,7 +118,7 @@ export class StickersComponent implements OnInit, OnDestroy {
       },
       option2: {
         me: ['gold'],
-        other: ['gold'],
+        other: [],
       },
     },
   ];
