@@ -207,11 +207,19 @@ export class RankSet1Component implements OnInit, OnDestroy {
         renkVal = 5;
         break;
       }
-      case 'very2' || 'very1': {
+      case 'very1': {
         renkVal = 4;
         break;
       }
-      case 'not2' || 'not1': {
+      case 'very2': {
+        renkVal = 4;
+        break;
+      }
+      case 'not2': {
+        renkVal = 2;
+        break;
+      }
+      case 'not1': {
         renkVal = 2;
         break;
       }
@@ -219,7 +227,19 @@ export class RankSet1Component implements OnInit, OnDestroy {
         renkVal = 1;
         break;
       }
-      case 'average4' || 'average3' || 'average2' || 'average1': {
+      case 'average1': {
+        renkVal = 3;
+        break;
+      }
+      case 'average2': {
+        renkVal = 3;
+        break;
+      }
+      case 'average3': {
+        renkVal = 3;
+        break;
+      }
+      case 'average4': {
         renkVal = 3;
         break;
       }
